@@ -773,10 +773,10 @@ export default function App() {
 
           {/* 5-6. INFORME DE GESTIÓN (MODIFICADO) */}
 
-          {activeSection === 'gestion' && (
+          
+            <div className={`${activeSection === 'gestion' ? 'block' : 'hidden'} print:block space-y-12 animate-in fade-in uppercase tracking-tight text-left`}>
 
-            <div className="space-y-12 animate-in fade-in uppercase tracking-tight text-left">
-
+            
               <SectionHeader title="Informe Integral de Gestión 2025" icon={TrendingUp} agendaIndex={5} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
 
               
@@ -1433,7 +1433,7 @@ export default function App() {
 
             </div>
 
-          )}
+          
 
 
 
@@ -1719,10 +1719,33 @@ export default function App() {
             </Card>
 
           </div>
+          
+          <style dangerouslySetInnerHTML={{ __html: `
+            @media print {
+              /* 1. Fuerza la visibilidad de la gestión en el PDF */
+              .print-visible-section {
+                display: block !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+              }
+
+              /* 2. Evita que las tarjetas se corten entre páginas */
+              .card, section, div {
+                page-break-inside: avoid !important;
+              }
+
+              /* 3. Asegura que los colores azul y verde se impriman */
+              * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+              }
+            }
+          `}} />
 
         </div>
 
       </main>
+      
 
     </div>
 
