@@ -443,7 +443,12 @@ export default function App() {
                           <td className="p-4 text-center">
                             <button 
                               onClick={() => toggleAsistencia(item.id)} 
-                              className={`px-4 py-1.5 rounded-lg text-[10px] font-black transition-all ${item.presente ? 'bg-[#0ea5e9] text-white shadow-md' : 'bg-slate-100 text-slate-400'}`}
+                              /* Agregamos la clase 'asistencia-btn' para identificarlo en el CSS de impresión */
+                              className={`asistencia-btn px-4 py-1.5 rounded-lg text-[10px] font-black transition-all ${
+                                item.presente 
+                                  ? 'bg-[#0ea5e9] text-white shadow-md' 
+                                  : 'bg-slate-100 text-slate-400'
+                              }`}
                             >
                               {item.presente ? 'PRESENTE' : 'AUSENTE'}
                             </button>
@@ -1102,37 +1107,12 @@ export default function App() {
             </div>
           </div>
 
-          {/* ESTILO DE IMPRESIÓN (MAGIA DE ESQUINA REAL) */}
+          {/* ESTILO DE IMPRESIÓN COMPILADO (CAMPOS DE ARAGÓN) */}
           <style dangerouslySetInnerHTML={{ __html: `
             @media print {
-              /* Evita que los ítems del Orden del Día o tablas se corten a la mitad */
-              .Card, section, div, tr, li {
-                page-break-inside: avoid !important;
-                break-inside: avoid !important;
-              }
-
-              /* Fuerza que los títulos de sección siempre empiecen en página nueva si es necesario */
-              h1, h2, h3 {
-                page-break-after: avoid !important;
-                break-after: avoid !important;
-              }
-
-              /* Si quieres que secciones específicas SIEMPRE empiecen en hoja nueva */
-              .print\:break-after-page {
-                page-break-before: always !important;
-                break-before: always !important;
-              }
-            }
-
-          
-            
-          `}} />
-
-          <style dangerouslySetInnerHTML={{ __html: `
-            @media print {
-              /* 1. ELIMINA PÁGINA EN BLANCO: Forzamos el reset de posición */
+              /* 1. RESET RADICAL DE POSICIÓN */
               @page {
-                margin: 0.5cm !important;
+                margin: 0 !important; /* Eliminamos márgenes de página que empujan el contenido */
                 size: auto;
               }
 
@@ -1141,9 +1121,11 @@ export default function App() {
                 margin: 0 !important;
                 padding: 0 !important;
                 background: white !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
               }
 
-              /* 2. REPARAR ESTRUCTURA: El flex causa la página en blanco en PDFs largos */
+              /* Evita que el contenedor flex empuje el contenido a la segunda página */
               .flex.min-h-screen {
                 display: block !important;
               }
@@ -1154,38 +1136,64 @@ export default function App() {
                 width: 100% !important;
               }
 
-              /* 3. VISIBILIDAD DE TÍTULOS: Forzamos el renderizado de SectionHeader */
-              .SectionHeader, [class*="SectionHeader"] {
+              /* 2. VISIBILIDAD DE TÍTULOS Y SECCIONES */
+              .SectionHeader, [class*="SectionHeader"], h2 {
                 display: block !important;
                 visibility: visible !important;
-                background-color: #f1f5f9 !important; /* Gris suave */
-                border-left: 12px solid #143d1f !important; /* Verde Campos de Aragón */
-                padding: 20px !important;
-                margin: 30px 0 !important;
+                background-color: #f1f5f9 !important; /* Gris suave de fondo */
+                border-left: 12px solid #143d1f !important; /* Verde oficial del edificio */
+                padding: 15px 20px !important;
+                margin: 25px 0 15px 0 !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+              }
+
+              /* 3. ETIQUETAS DE ASISTENCIA (Sustituye a los botones) */
+              /* Forzamos que el botón azul de PRESENTE se vea */
+              .bg-\[\#0ea5e9\], [class*="bg-[#0ea5e9]"] {
+                background-color: #0ea5e9 !important;
+                color: white !important;
+                border-radius: 6px !important;
+                padding: 4px 12px !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
-                break-inside: avoid;
               }
 
-              /* 4. ETIQUETAS DE ASISTENCIA: Para que los botones se vean como tags */
-              .presente-tag, button:contains("PRESENTE"), [class*="bg-blue-600"] {
-                background-color: #2563eb !important;
-                color: white !important;
-                border: none !important;
-                padding: 5px 10px !important;
+              /* Forzamos que el estado AUSENTE se vea */
+              .bg-slate-100 {
+                background-color: #f1f5f9 !important;
+                color: #94a3b8 !important;
+                border: 1px solid #e2e8f0 !important;
                 border-radius: 6px !important;
+                padding: 4px 12px !important;
                 -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
               }
 
-              /* Ocultar elementos innecesarios */
-              aside, .print\:hidden, button {
-                display: none !important;
-              }
-
-              /* Evitar que las tablas se corten feo */
-              .Card, table, section {
+              /* 4. CONTROL DE CORTES DE PÁGINA */
+              .Card, section, div, tr, li, table {
                 page-break-inside: avoid !important;
-                margin-bottom: 20px !important;
+                break-inside: avoid !important;
+                margin-bottom: 15px !important;
+              }
+
+              .print\:break-after-page {
+                page-break-before: always !important;
+                break-before: always !important;
+              }
+
+              /* 5. LIMPIEZA DE INTERFAZ WEB */
+              aside, .print\:hidden, nav, .bg-[#143d1f] { 
+                /* Ocultamos sidebar y botones de acción web como "Marcar Todos" */
+                display: none !important; 
+              }
+
+              /* Permitir que el botón de 'PRESENTE/AUSENTE' sea el único botón visible */
+              td button {
+                display: inline-block !important;
+                border: none !important;
+                box-shadow: none !important;
+                text-transform: uppercase !important;
               }
             }
           `}} />
