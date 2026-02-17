@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media print {
+  /* Oculta el sidebar, el encabezado azul y los botones de la web */
+  aside, nav, .print\:hidden, button {
+    display: none !important;
+  }
+
+  /* Asegura que el contenedor principal use todo el ancho del papel */
+  main, .Card, #root {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  /* Forza a que aparezcan los colores (importante para los logos y etiquetas) */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Ajusta el tamaño de la letra para que todo quepa en una sola hoja */
+  body {
+    font-size: 10pt;
+    background: white !important;
+  }
+}

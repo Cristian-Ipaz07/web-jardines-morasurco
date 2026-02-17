@@ -228,7 +228,24 @@ export default function App() {
   const [tempProp, setTempProp] = useState({ proponente: '', texto: '' });
   const [postuladosConsejo, setPostuladosConsejo] = useState([]);
   const [postuladosConvivencia, setPostuladosConvivencia] = useState([]);
-
+  const evacuarDignatarios = () => {
+  // Usamos el setAgendaStatus directamente para asegurar que React repinte la interfaz
+    setAgendaStatus(prev => {
+      const nuevoEstado = [...prev];
+      nuevoEstado[2] = true; // Marca Punto 3
+      nuevoEstado[3] = true; // Marca Punto 4
+      return nuevoEstado;
+    });
+  };
+  const evacuarElecciones = () => {
+    // Usamos setAgendaStatus directamente para asegurar que ambos puntos cambien
+    setAgendaStatus(prev => {
+      const nuevoEstado = [...prev];
+      nuevoEstado[8] = true; // Marca Punto 9 (Consejo) en el Orden del Día
+      nuevoEstado[9] = true; // Marca Punto 10 (Convivencia) en el Orden del Día
+      return nuevoEstado;
+    });
+  };
   const totalQuorum = useMemo(() => {
     const total = asistencia.filter(a => a.presente).reduce((acc, curr) => acc + curr.coeficiente, 0);
     return parseFloat(total.toFixed(2));
@@ -285,6 +302,7 @@ export default function App() {
             { id: 'quorum', label: '1. Quórum', icon: Users },
             { id: 'orden', label: '2. Orden del Día', icon: CheckSquare },
             { id: 'dignatarios', label: '3-4. Dignatarios', icon: UserPlus },
+            { id: 'actaAnterior', label: '5. Acta Anterior', icon: ShieldCheck },
             { id: 'gestion', label: '6. Informe Gestión', icon: TrendingUp },
             { id: 'financiero', label: '7. Financiero', icon: BarChart3 },
             { id: 'presupuesto', label: '8. Presupuesto', icon: Settings },
@@ -388,7 +406,7 @@ export default function App() {
             </div>
           )}
 
-          {activeSection === 'quorum' && (
+          <div className={`${activeSection === 'quorum' ? 'block' : 'hidden'} print:block`}>
             <div className="space-y-8 animate-in slide-in-from-right-10">
               <SectionHeader title="Verificación del Quórum" icon={Users} agendaIndex={0} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
               <Card>
@@ -423,9 +441,9 @@ export default function App() {
                 </div>
               </Card>
             </div>
-          )}
+          </div>
 
-          {activeSection === 'orden' && (
+          <div className={`${activeSection === 'orden' ? 'block' : 'hidden'} print:block print:break-after-page uppercase`}>
             <div className="space-y-8 animate-in fade-in">
               <SectionHeader title="Aprobación Orden del Día" icon={CheckSquare} agendaIndex={1} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -449,9 +467,9 @@ export default function App() {
                  </Card>
               </div>
             </div>
-          )}
+          </div>
 
-          {activeSection === 'gestion' && (
+          <div className={`${activeSection === 'gestion' ? 'block' : 'hidden'} print:block`}>
             <div className="space-y-12 animate-in slide-in-from-bottom-10 uppercase">
               <SectionHeader title="Informe Integral de Gestión 2025" icon={TrendingUp} agendaIndex={5} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
               
@@ -795,40 +813,40 @@ export default function App() {
                 </Card>
               </div>
             </div>
-          )}
+          </div>
 
-          
-
-          {activeSection === 'orden' && (
-            <div className="space-y-8 animate-in fade-in">
-              <SectionHeader title="Aprobación Orden del Día" icon={CheckSquare} agendaIndex={1} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                 <div className="lg:col-span-2 space-y-3">
-                   {ORDEN_DIA_OFICIAL.map((punto, idx) => (
-                     <div key={idx} className={`p-4 rounded-xl border flex items-center gap-4 transition-all ${agendaStatus[idx] ? 'border-sky-200 bg-sky-50/50' : 'bg-white border-slate-100'}`}>
-                        <div className={`h-8 w-8 rounded-lg flex items-center justify-center font-black text-xs ${agendaStatus[idx] ? 'bg-[#0ea5e9] text-white' : 'bg-slate-100 text-slate-400'}`}>
-                           {idx + 1}
-                        </div>
-                        <span className={`font-bold text-sm uppercase tracking-tight ${agendaStatus[idx] ? 'text-sky-900' : 'text-slate-600'}`}>{punto}</span>
-                     </div>
-                   ))}
-                 </div>
-                 <Card title="Observaciones">
-                    <textarea 
-                      className="w-full p-4 bg-slate-50 border rounded-2xl text-xs h-64 outline-none focus:ring-2 focus:ring-sky-800/10 uppercase font-bold border-slate-200"
-                      placeholder="Registre constancias de aprobación aquí..."
-                      value={obsAgenda}
-                      onChange={(e) => setObsAgenda(e.target.value)}
-                    ></textarea>
-                 </Card>
-              </div>
+          <div className={`${activeSection === 'actaAnterior' ? 'block' : 'hidden'} print:block print:break-after-page uppercase`}>
+            <div className="space-y-8 animate-in fade-in text-center">
+              <SectionHeader title="Validación Acta Anterior" icon={ShieldCheck} agendaIndex={4} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
+              <Card className="py-16 flex flex-col items-center">
+                <div className="h-16 w-16 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-600 mb-6">
+                  <ClipboardCheck size={32}/>
+                </div>
+                <h4 className="text-xl font-black text-slate-800 uppercase mb-2">Comisión Verificadora Vigencia 2025</h4>
+                <p className="text-slate-500 font-bold max-w-sm uppercase text-[10px] mb-8 leading-relaxed">
+                  Se confirma que el acta de la asamblea anterior fue revisada, validada y firmada por la comisión designada, cumpliendo con los términos legales.
+                </p>
+                <div className="p-4 bg-slate-50 rounded-2xl border border-dashed border-slate-200 w-full max-w-xs">
+                  <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Estado de la Verificación</p>
+                  <span className="text-emerald-600 font-black uppercase text-xs">ACTA 100% VERIFICADA</span>
+                </div>
+              </Card>
             </div>
-          )}
+          </div>
 
-          {activeSection === 'dignatarios' && (
+
+          <div className={`${activeSection === 'dignatarios' ? 'block' : 'hidden'} print:block`}>
             <div className="space-y-8 animate-in zoom-in-95">
-               <SectionHeader title="Dignatarios y Comisión" icon={UserPlus} agendaIndex={2} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
-               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+               <SectionHeader 
+                  title="Dignatarios y Comisión" 
+                  icon={UserPlus} 
+                  agendaIndex={2} 
+                  // Forzamos al botón a que brille si el punto 2 (Dignatarios) está marcado
+                  agendaStatus={agendaStatus} 
+                  // Usamos la función que creamos arriba para que haga la doble acción
+                  toggleAgendaItem={evacuarDignatarios} 
+                />           
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   <div className="md:col-span-2 space-y-8 uppercase">
                     <Card title="Mesa Directiva de la Asamblea">
                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
@@ -853,21 +871,21 @@ export default function App() {
                   </div>
                </div>
             </div>
-          )}
+          </div>
 
-          {activeSection === 'financiero' && (
+          {/* --- SECCIÓN 7-8: FINANCIERO --- */}
+          <div className={`${activeSection === 'financiero' ? 'block' : 'hidden'} print:block print:break-after-page uppercase text-center`}>
             <div className="space-y-8 animate-in fade-in text-center">
-               <SectionHeader title="Estados Financieros 2025" icon={BarChart3} agendaIndex={6} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
-               <Card className="py-20 flex flex-col items-center">
-                  <div className="h-20 w-20 bg-sky-50 rounded-full flex items-center justify-center text-sky-600 mb-6"><FileText size={40}/></div>
-                  <h4 className="text-2xl font-black text-slate-800 uppercase mb-2 tracking-tighter">Balance General a Dic 31</h4>
-                  <p className="text-slate-500 font-bold mb-10 max-w-sm uppercase text-xs">Aprobación de la ejecución presupuestal y estados contables auditados.</p>
-                  
-               </Card>
+              <SectionHeader title="Estados Financieros 2025" icon={BarChart3} agendaIndex={6} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
+              <Card className="py-20 flex flex-col items-center">
+                <div className="h-20 w-20 bg-sky-50 rounded-full flex items-center justify-center text-sky-600 mb-6"><FileText size={40}/></div>
+                <h4 className="text-2xl font-black text-slate-800 uppercase mb-2 tracking-tighter">Balance General a Dic 31</h4>
+                <p className="text-slate-500 font-bold mb-10 max-w-sm uppercase text-xs">Aprobación de la ejecución presupuestal y estados contables auditados.</p>
+              </Card>
             </div>
-          )}
+          </div> 
 
-          {activeSection === 'presupuesto' && (
+          <div className={`${activeSection === 'presupuesto' ? 'block' : 'hidden'} print:block print:break-after-page uppercase text-center`}>
             <div className="space-y-8 animate-in fade-in text-center">
               {/* Encabezado de sección vinculado al punto 8 del orden del día */}
               <SectionHeader 
@@ -894,12 +912,20 @@ export default function App() {
                 </p>
               </Card>
             </div>
-          )}
+          </div>
 
-          {activeSection === 'postulaciones' && (
+          <div className={`${activeSection === 'postulaciones' ? 'block' : 'hidden'} print:block print:break-after-page uppercase text-center`}>
             <div className="space-y-8 animate-in slide-in-from-right-10 uppercase">
-               <SectionHeader title="Elección de Órganos 2026" icon={UserPlus} agendaIndex={8} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
-               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <SectionHeader 
+                title="Elección de Órganos 2026" 
+                icon={UserPlus} 
+                // Cambia esto de 9 a 8
+                agendaIndex={8} 
+                agendaStatus={agendaStatus} 
+                // Asegúrate de que llame a la función de doble acción que ya creamos
+                toggleAgendaItem={evacuarElecciones} 
+              />
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   <Card title="Consejo de Administración">
                      <div className="space-y-4">
                         <div className="flex flex-wrap gap-2 min-h-[40px] p-4 bg-sky-50 rounded-2xl border border-sky-100">
@@ -944,9 +970,9 @@ export default function App() {
                   </Card>
                </div>
             </div>
-          )}
+          </div>
 
-          {activeSection === 'proposiciones' && (
+          <div className={`${activeSection === 'proposiciones' ? 'block' : 'hidden'} print:block print:break-after-page uppercase text-center`}>
              <div className="space-y-8 animate-in slide-in-from-bottom-10 uppercase">
                 <SectionHeader title="Proposiciones y Varios" icon={MessageSquare} agendaIndex={10} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -973,73 +999,105 @@ export default function App() {
                    </Card>
                 </div>
              </div>
-          )}
+          </div>
 
-          {activeSection === 'resumen' && (
-             <div className="space-y-8 animate-in zoom-in-95 uppercase text-center">
-                <div className="flex justify-between items-center print:hidden">
-                   <h2 className="text-3xl font-black text-slate-800 tracking-tighter uppercase">Cierre de Sesión</h2>
-                   <button onClick={handlePrint} className="bg-[#143d1f] text-white px-8 py-4 rounded-2xl font-black flex items-center gap-3 shadow-2xl hover:bg-[#0d2a15] transition-all text-xs tracking-widest">
-                      <Printer size={20} /> Generar Acta Final PDF
-                   </button>
+          <div className={`${activeSection === 'resumen' ? 'block' : 'hidden'} print:block space-y-8 uppercase tracking-widest text-center`}>
+            <div className="space-y-8 animate-in zoom-in-95 uppercase text-center">
+              <div className="flex justify-between items-center print:hidden">
+                <h2 className="text-3xl font-black text-slate-800 tracking-tighter uppercase">Cierre de Sesión</h2>
+                <button onClick={handlePrint} className="bg-[#143d1f] text-white px-8 py-4 rounded-2xl font-black flex items-center gap-3 shadow-2xl hover:bg-[#0d2a15] transition-all text-xs tracking-widest">
+                  <Printer size={20} /> Generar Acta Final PDF
+                </button>
+              </div>
+
+              <Card className="p-12 border-t-8 border-[#0ea5e9] print:shadow-none print:border-none print:p-0">
+                {/* CABECERA DE IMPRESIÓN */}
+                <div className="hidden print:block text-center mb-10 border-b-2 border-slate-900 pb-8 uppercase">
+                  <h1 className="text-3xl font-black mb-1">Acta Asamblea General Ordinaria 2026</h1>
+                  <p className="text-xl font-bold text-slate-600 tracking-widest">Edificio Campos de Aragón</p>
                 </div>
-                <Card className="p-12 border-t-8 border-[#0ea5e9] print:shadow-none print:border-none print:p-0">
-                   <div className="hidden print:block text-center mb-10 border-b-2 border-slate-900 pb-8 uppercase">
-                      <h1 className="text-3xl font-black mb-1">Acta Asamblea General Ordinaria 2026</h1>
-                      <p className="text-xl font-bold text-slate-600 tracking-widest">Edificio Campos de Aragón</p>
-                   </div>
-                   <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center uppercase">
-                      <div>
-                         <p className="text-[10px] font-black text-slate-400 mb-6 uppercase tracking-widest">Resultado Quórum</p>
-                         <p className="text-4xl font-black text-[#143d1f] tracking-tighter">{totalQuorum.toFixed(2)}%</p>
-                         <p className="text-[10px] font-bold text-emerald-600 mt-2 uppercase">Decisiones Válidas</p>
-                      </div>
-                      <div>
-                         <p className="text-[10px] font-black text-slate-400 mb-6 uppercase tracking-widest">Mesa Directiva</p>
-                         <div className="space-y-4 font-black text-sm uppercase">
-                            <div><p className="text-[9px] text-slate-400 mb-1">Presidente:</p><p>{dignatarios.presidente || '________________'}</p></div>
-                            <div><p className="text-[9px] text-slate-400 mb-1">Secretario:</p><p>{dignatarios.secretario || '________________'}</p></div>
-                         </div>
-                      </div>
-                      <div>
-                         <p className="text-[10px] font-black text-slate-400 mb-6 uppercase tracking-widest">Órganos Elegidos</p>
-                         <div className="space-y-4 text-[10px] font-black">
-                            <p className="text-slate-400 leading-none">Consejo:</p>
-                            <div className="flex flex-wrap gap-1 justify-center">{postuladosConsejo.length > 0 ? postuladosConsejo.map(p => <span key={p} className="bg-sky-50 px-2 py-0.5 rounded border border-sky-100 tracking-tight uppercase text-sky-800">{p}</span>) : 'PENDIENTE'}</div>
-                            <p className="text-slate-400 leading-none mt-2">Convivencia:</p>
-                            <div className="flex flex-wrap gap-1 justify-center">{postuladosConvivencia.map(p => <span key={p} className="bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100 text-emerald-800 tracking-tight uppercase">{p}</span>)}</div>
-                         </div>
-                      </div>
-                   </div>
-                   <div className="mt-16 pt-16 border-t border-slate-200 uppercase text-left">
-                      <p className="text-center text-[10px] font-black text-slate-400 mb-8 uppercase tracking-widest">Proposiciones y Acuerdos Finales</p>
-                      {proposiciones.length > 0 ? (
-                         <div className="space-y-4 print:space-y-6">
-                            {proposiciones.map(p => (
-                               <div key={p.id} className="p-4 bg-slate-50 border border-slate-200 rounded-2xl print:bg-white uppercase">
-                                  <p className="text-[9px] font-black text-sky-800 mb-1">UNIDAD: {p.proponente}</p>
-                                  <p className="text-xs font-bold text-slate-700 leading-relaxed uppercase">{p.texto}</p>
-                               </div>
-                            ))}
-                         </div>
-                      ) : <p className="text-center text-xs italic text-slate-300 font-bold uppercase opacity-40">Sin proposiciones adicionales.</p>}
-                   </div>
-                   <div className="hidden print:grid grid-cols-2 gap-32 mt-32">
-                      <div className="border-t-2 border-slate-900 pt-4 text-center">
-                         <p className="text-xs font-black uppercase mb-1">{dignatarios.presidente || '_______________________'}</p>
-                         <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Presidente de Asamblea</p>
-                      </div>
-                      <div className="border-t-2 border-slate-900 pt-4 text-center">
-                         <p className="text-xs font-black uppercase mb-1">{dignatarios.secretario || '_______________________'}</p>
-                         <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Secretario de Asamblea</p>
-                      </div>
-                   </div>
-                </Card>
-             </div>
-          )}
 
-        </div>
-      </main>
-    </div>
+                {/* DATOS RESUMEN (MAGIA DE CONEXIÓN) */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center uppercase mb-16">
+                  <div>
+                    <p className="text-[10px] font-black text-slate-400 mb-6 tracking-widest">Resultado Quórum</p>
+                    <p className="text-4xl font-black text-[#143d1f] tracking-tighter">{totalQuorum.toFixed(2)}%</p>
+                    <p className="text-[10px] font-bold text-emerald-600 mt-2">Decisiones Válidas</p>
+                  </div>
+                  
+                  <div>
+                    <p className="text-[10px] font-black text-slate-400 mb-6 tracking-widest">Mesa Directiva</p>
+                    <div className="space-y-4 font-black text-sm">
+                      <div>
+                        <p className="text-[9px] text-slate-400 mb-1">Presidente:</p>
+                        <p>{dignatarios.presidente || '________________'}</p>
+                      </div>
+                      <div>
+                        <p className="text-[9px] text-slate-400 mb-1">Secretario:</p>
+                        <p>{dignatarios.secretario || '________________'}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <p className="text-[10px] font-black text-slate-400 mb-6 tracking-widest">Órganos Elegidos</p>
+                    <div className="space-y-4 text-[10px] font-black">
+                      <p className="text-slate-400 leading-none">Consejo:</p>
+                      <div className="flex flex-wrap gap-1 justify-center">
+                        {postuladosConsejo.length > 0 ? postuladosConsejo.map(p => (
+                          <span key={p} className="bg-sky-50 px-2 py-0.5 rounded border border-sky-100 text-sky-800 uppercase">{p}</span>
+                        )) : 'PENDIENTE'}
+                      </div>
+                      <p className="text-slate-400 leading-none mt-2">Convivencia:</p>
+                      <div className="flex flex-wrap gap-1 justify-center">
+                        {postuladosConvivencia.length > 0 ? postuladosConvivencia.map(p => (
+                          <span key={p} className="bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100 text-emerald-800 uppercase">{p}</span>
+                        )) : 'PENDIENTE'}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* FIRMAS FINALES */}
+                <div className="hidden print:grid grid-cols-2 gap-32 mt-32">
+                  <div className="border-t-2 border-slate-900 pt-4 text-center">
+                    <p className="text-xs font-black uppercase mb-1">{dignatarios.presidente || '_______________________'}</p>
+                    <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Presidente de Asamblea</p>
+                  </div>
+                  <div className="border-t-2 border-slate-900 pt-4 text-center">
+                    <p className="text-xs font-black uppercase mb-1">{dignatarios.secretario || '_______________________'}</p>
+                    <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Secretario de Asamblea</p>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </div>
+
+          {/* ESTILO DE IMPRESIÓN (MAGIA DE ESQUINA REAL) */}
+          <style dangerouslySetInnerHTML={{ __html: `
+            @media print {
+              /* Evita que los ítems del Orden del Día o tablas se corten a la mitad */
+              .Card, section, div, tr, li {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+              }
+
+              /* Fuerza que los títulos de sección siempre empiecen en página nueva si es necesario */
+              h1, h2, h3 {
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+              }
+
+              /* Si quieres que secciones específicas SIEMPRE empiecen en hoja nueva */
+              .print\:break-after-page {
+                page-break-before: always !important;
+                break-before: always !important;
+              }
+            }
+          `}} />
+
+        </div> {/* CIERRA max-w-6xl */}
+      </main> {/* CIERRA main */}
+    </div> 
   );
 }
