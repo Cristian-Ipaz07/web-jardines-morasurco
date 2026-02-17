@@ -146,41 +146,41 @@ const InvestmentTable = ({ title, data, total, icon: Icon, photos = [] }) => {
 
 // --- BASE DE DATOS CAMPOS DE ARAGÓN (ACTUALIZADA 100%) ---
 const INITIAL_DATA = [
-  { id: 1, unidad: '301', propietario: 'ARMANDO BENAVIDES', coeficiente: 1.55540 },
+  { id: 1, unidad: '301', propietario: 'PROYECTOS E INVERSIONES', coeficiente: 1.55540 },
   { id: 2, unidad: '302', propietario: 'JAIME BURBANO', coeficiente: 1.81804 },
   { id: 3, unidad: '303', propietario: 'ALFREDO ERAZO', coeficiente: 1.81956 },
   { id: 4, unidad: '304', propietario: 'CLAUDIA YANETH PEÑA', coeficiente: 1.45938 },
   { id: 5, unidad: '401', propietario: 'CAROLINA RODRIGUEZ PUERTAS', coeficiente: 1.51149 },
   { id: 6, unidad: '402', propietario: 'LUZ MARINA PUERTA VELEZ', coeficiente: 1.90105 },
   { id: 7, unidad: '403', propietario: 'MARIA LUCRECIA ORDOÑEZ', coeficiente: 1.86484 },
-  { id: 8, unidad: '404', propietario: 'JOHANA CARDENAS', coeficiente: 1.45817 },
-  { id: 9, unidad: '501', propietario: 'CARLOS ENRIQUEZ', coeficiente: 1.55134 },
-  { id: 10, unidad: '502', propietario: 'JOSE IGNACIO CORAL', coeficiente: 1.82101 },
-  { id: 11, unidad: '503', propietario: 'LUCIA RIASCOS', coeficiente: 1.87247 },
-  { id: 12, unidad: '504', propietario: 'YOLANDA VELEZ', coeficiente: 1.45567 },
-  { id: 13, unidad: '601', propietario: 'LILIANA CORAL', coeficiente: 1.43467 },
-  { id: 14, unidad: '602', propietario: 'MYRIAM PAREDES AGUIRRE', coeficiente: 1.89493 },
-  { id: 15, unidad: '603', propietario: 'LUIS ZARAMA', coeficiente: 1.95358 },
-  { id: 16, unidad: '604', propietario: 'GLORIA SANTANDER', coeficiente: 1.42934 },
-  { id: 17, unidad: '701', propietario: 'DIANA MARIA RODRIGUEZ', coeficiente: 1.49991 },
-  { id: 18, unidad: '702', propietario: 'ANA ISABEL CHAMORRO', coeficiente: 1.86992 },
-  { id: 19, unidad: '703', propietario: 'HUMBERTO VIVEROS-SOFIA BENAVIDES', coeficiente: 1.72319 },
-  { id: 20, unidad: '704', propietario: 'DIEGO PORTILLA', coeficiente: 1.47325 },
-  { id: 21, unidad: '801', propietario: 'LUIS ALBERTO AZA', coeficiente: 1.43851 },
-  { id: 22, unidad: '802', propietario: 'FABIO ARMANDO MARTINEZ', coeficiente: 1.81932 },
-  { id: 23, unidad: '803', propietario: 'ORLANDO VILLOTA', coeficiente: 1.82521 },
-  { id: 24, unidad: '804', propietario: 'PATRICIA VIVIANA ORDOÑEZ', coeficiente: 1.48833 },
-  { id: 25, unidad: '901', propietario: 'PATRICIA SILVA DE ACOSTA', coeficiente: 1.51149 },
-  { id: 26, unidad: '902', propietario: 'MARGARITA', coeficiente: 1.83446 },
-  { id: 27, unidad: '903', propietario: 'NIDIA ARCOS', coeficiente: 1.86484 },
-  { id: 28, unidad: '904', propietario: 'CARLOS SOLARTE', coeficiente: 1.43209 },
-  { id: 29, unidad: '1001', propietario: 'CATALINA VILLOTA', coeficiente: 1.54718 },
-  { id: 30, unidad: '1002', propietario: 'HENRY CABRERA-LIDIA ORTIZ', coeficiente: 1.81183 },
-  { id: 31, unidad: '1003', propietario: 'EMMA RUANO PAZ', coeficiente: 1.81183 },
+  { id: 8, unidad: '404', propietario: 'JOHANA CARDENAS', coeficiente: 1.45567 },
+  { id: 9, unidad: '501', propietario: 'CARLOS ENRIQUEZ', coeficiente: 1.43467 },
+  { id: 10, unidad: '502', propietario: 'JOSE IGNACIO CORAL', coeficiente: 1.89493 },
+  { id: 11, unidad: '503', propietario: 'EMMA GUERRA NIETO', coeficiente: 1.95358 },
+  { id: 12, unidad: '504', propietario: 'YOLANDA VELEZ', coeficiente: 1.42934 },
+  { id: 13, unidad: '601', propietario: 'LILIANA CORAL', coeficiente: 1.49991 },
+  { id: 14, unidad: '602', propietario: 'MYRIAM PAREDES AGUIRRE', coeficiente: 1.86992 },
+  { id: 15, unidad: '603', propietario: 'LUIS ZARAMA', coeficiente: 1.72319 },
+  { id: 16, unidad: '604', propietario: 'GLORIA SANTANDER', coeficiente: 1.47325 },
+  { id: 17, unidad: '701', propietario: 'DIANA MARIA RODRIGUEZ', coeficiente: 1.44501 },
+  { id: 18, unidad: '702', propietario: 'ANA ISABEL CHAMORRO', coeficiente: 1.84490 },
+  { id: 19, unidad: '703', propietario: 'HUMBERTO VIVEROS-SOFIA BENAVIDES', coeficiente: 1.89526 },
+  { id: 20, unidad: '704', propietario: 'DIEGO PORTILLA', coeficiente: 1.43467 },
+  { id: 21, unidad: '801', propietario: 'LUIS ALBERTO AZA', coeficiente: 1.52531 },
+  { id: 22, unidad: '802', propietario: 'FABIO ARMANDO MARTINEZ', coeficiente: 1.82963 },
+  { id: 23, unidad: '803', propietario: 'ORLANDO VILLOTA', coeficiente: 1.85346 },
+  { id: 24, unidad: '804', propietario: 'ANDRES ORDOÑEZ', coeficiente: 1.52380 },
+  { id: 25, unidad: '901', propietario: 'PATRICIA SILVA DE ACOSTA', coeficiente: 1.46890 },
+  { id: 26, unidad: '902', propietario: 'ANTONIO CALDERON', coeficiente: 1.86149 },
+  { id: 27, unidad: '903', propietario: 'NIDIA ARCOS-ARMANDO CHAMORRO', coeficiente: 1.83885 },
+  { id: 28, unidad: '904', propietario: 'CARLOS SOLARTE', coeficiente: 1.45751 },
+  { id: 29, unidad: '1001', propietario: 'CATALINA VILLOTA', coeficiente: 1.49991 },
+  { id: 30, unidad: '1002', propietario: 'HENRY CABRERA-LIDIA ORTIZ', coeficiente: 1.81449 },
+  { id: 31, unidad: '1003', propietario: 'EMMA RUANO PAZ', coeficiente: 1.86011 },
   { id: 32, unidad: '1004', propietario: 'FELIPE SOLARTE MAYA', coeficiente: 1.47562 },
   { id: 33, unidad: '1101', propietario: 'DOLY PANTOJA GUERRERO', coeficiente: 1.55540 },
   { id: 34, unidad: '1102', propietario: 'MARIA EUGENIA DE LA ROSA', coeficiente: 1.83358 },
-  { id: 35, unidad: '1103', propietario: 'JUAN FELIPE SAA', coeficiente: 1.98058 },
+  { id: 35, unidad: '1103', propietario: 'JUAN FELIPE SAA', coeficiente: 1.98063 },
   { id: 36, unidad: '1104', propietario: 'LUISA FERNANDA ENRIQUEZ ERASO', coeficiente: 1.54769 },
   { id: 37, unidad: '1201', propietario: 'EDUARDO VILLACIS', coeficiente: 1.51735 },
   { id: 38, unidad: '1202', propietario: 'ANDRES SANTACRUZ DE LA ROSA', coeficiente: 1.91303 },
@@ -190,18 +190,18 @@ const INITIAL_DATA = [
   { id: 42, unidad: '1302', propietario: 'LIBARDO VALLEJO Y ALICIA CAIZA', coeficiente: 1.86807 },
   { id: 43, unidad: '1303', propietario: 'CONCEPCION VILLOTA LEON', coeficiente: 1.85755 },
   { id: 44, unidad: '1304', propietario: 'MARIA ISABEL SARRALDE', coeficiente: 1.45593 },
-  { id: 45, unidad: '1401', propietario: 'MARIA EUGENIA SILVA', coeficiente: 1.78500 },
-  { id: 46, unidad: '1402', propietario: 'TERESITA CHAMORRO DE LÓPEZ', coeficiente: 1.78500 },
-  { id: 47, unidad: '1403', propietario: 'PEDRO GARCIA REALPE', coeficiente: 1.78500 },
-  { id: 48, unidad: '1404', propietario: 'ANYELI GUERRERO', coeficiente: 1.78500 },
-  { id: 49, unidad: '1501', propietario: 'JHON CABRERA', coeficiente: 1.78500 },
-  { id: 50, unidad: '1502', propietario: 'ANDRES SANTANDER H.', coeficiente: 1.78500 },
-  { id: 51, unidad: '1503', propietario: 'JESUS MARIA TORRONTEGUI', coeficiente: 1.78500 },
-  { id: 52, unidad: '1504', propietario: 'JOSE ANTONIO MARTINEZ', coeficiente: 1.78500 },
-  { id: 53, unidad: '1601', propietario: 'ALVARO EUDORO VILLOTA', coeficiente: 1.78500 },
-  { id: 54, unidad: '1602', propietario: 'MARIO SANTANDER', coeficiente: 1.78500 },
-  { id: 55, unidad: '1603', propietario: 'PABLO ANDRES GUERRERO', coeficiente: 1.78500 },
-  { id: 56, unidad: '1604', propietario: 'IVAN CABRERA', coeficiente: 1.78500 },
+  { id: 45, unidad: '1401', propietario: 'MARIA EUGENIA SILVA', coeficiente: 1.44389 },
+  { id: 46, unidad: '1402', propietario: 'TERESITA CHAMORRO DE LÓPEZ', coeficiente: 1.91303 },
+  { id: 47, unidad: '1403', propietario: 'PEDRO GARCIA REALPE', coeficiente: 1.99933 },
+  { id: 48, unidad: '1404', propietario: 'ANYELI GUERRERO', coeficiente: 1.47213 },
+  { id: 49, unidad: '1501', propietario: 'OSCAR ROSERO DE LA ROSA', coeficiente: 1.44218 },
+  { id: 50, unidad: '1502', propietario: 'ANDRES SANTANDER H.', coeficiente: 1.91502 },
+  { id: 51, unidad: '1503', propietario: 'JESUS MARIA TORRONTEGUI', coeficiente: 1.89697 },
+  { id: 52, unidad: '1504', propietario: 'JOSE ANTONIO MARTINEZ', coeficiente: 1.54835 },
+  { id: 53, unidad: '1601', propietario: 'EUDORO VILLOTA', coeficiente: 2.45964 },
+  { id: 54, unidad: '1602', propietario: 'ALVARO SANTANDER', coeficiente: 3.53129 },
+  { id: 55, unidad: '1603', propietario: 'PABLO ANDRES GUERRERO', coeficiente: 3.49417 },
+  { id: 56, unidad: '1604', propietario: 'MARIO IVAN CABRERA', coeficiente: 2.87046 },
 ];
 
 const ORDEN_DIA_OFICIAL = [
@@ -278,6 +278,11 @@ export default function App() {
     } else {
       setPostuladosConvivencia(prev => prev.includes(propietario) ? prev.filter(p => p !== propietario) : [...prev, propietario]);
     }
+  };
+
+  const marcarTodosComoPresentes = () => {
+  // Esta función recorre todo el INITIAL_DATA y activa el check de asistencia
+  setAsistencia(prev => prev.map(unidad => ({ ...unidad, presente: true })));
   };
 
   const handlePrint = () => window.print();
@@ -409,6 +414,15 @@ export default function App() {
           <div className={`${activeSection === 'quorum' ? 'block' : 'hidden'} print:block`}>
             <div className="space-y-8 animate-in slide-in-from-right-10">
               <SectionHeader title="Verificación del Quórum" icon={Users} agendaIndex={0} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
+              {/* BOTÓN DE ASISTENCIA RÁPIDA */}
+              <div className="flex justify-end mb-4 print:hidden">
+                <button 
+                  onClick={marcarTodosComoPresentes}
+                  className="bg-[#143d1f] text-white px-6 py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-xl hover:bg-[#0d2a15] transition-all flex items-center gap-3"
+                >
+                  <Users size={16} /> Marcar Asistencia Total
+                </button>
+              </div>
               <Card>
                 <div className="overflow-x-auto">
                   <table className="w-full text-left text-sm">
@@ -662,6 +676,7 @@ export default function App() {
                       { proveedor: "Vialambre SAS", detalle: "Compra 4 carros de mercado", valor: "$2.084.252" },
                       { proveedor: "Pedro Nel Salas", detalle: "Tapetes caucho tráfico pesado", valor: "$1.496.040" },
                       { proveedor: "Ricardo Fierro", detalle: "Actualización anual SGSST", valor: "$400.000" },
+                      { proveedor: "Agromaquinas del Cauca", detalle: "Cortasetos", valor: "$400.000" },
                     ]}
                   />
                 </div>
@@ -818,14 +833,28 @@ export default function App() {
           <div className={`${activeSection === 'actaAnterior' ? 'block' : 'hidden'} print:block print:break-after-page uppercase`}>
             <div className="space-y-8 animate-in fade-in text-center">
               <SectionHeader title="Validación Acta Anterior" icon={ShieldCheck} agendaIndex={4} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
+              
               <Card className="py-16 flex flex-col items-center">
                 <div className="h-16 w-16 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-600 mb-6">
                   <ClipboardCheck size={32}/>
                 </div>
+                
                 <h4 className="text-xl font-black text-slate-800 uppercase mb-2">Comisión Verificadora Vigencia 2025</h4>
+                
                 <p className="text-slate-500 font-bold max-w-sm uppercase text-[10px] mb-8 leading-relaxed">
                   Se confirma que el acta de la asamblea anterior fue revisada, validada y firmada por la comisión designada, cumpliendo con los términos legales.
                 </p>
+
+                {/* BOTÓN DE ACCESO AL DRIVE */}
+                <a 
+                  href="https://drive.google.com/file/d/1kwnBP1bVWx57HMMgHdinZf0Wi_5i_LYq/view?usp=sharing" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="mb-8 bg-sky-600 hover:bg-sky-700 text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl transition-all transform hover:scale-105 flex items-center gap-3 print:hidden"
+                >
+                  <FileText size={18} /> Ver Acta Firmada (Drive) <ExternalLink size={14} />
+                </a>
+
                 <div className="p-4 bg-slate-50 rounded-2xl border border-dashed border-slate-200 w-full max-w-xs">
                   <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Estado de la Verificación</p>
                   <span className="text-emerald-600 font-black uppercase text-xs">ACTA 100% VERIFICADA</span>
@@ -1092,6 +1121,71 @@ export default function App() {
               .print\:break-after-page {
                 page-break-before: always !important;
                 break-before: always !important;
+              }
+            }
+
+          
+            
+          `}} />
+
+          <style dangerouslySetInnerHTML={{ __html: `
+            @media print {
+              /* 1. ELIMINA PÁGINA EN BLANCO: Forzamos el reset de posición */
+              @page {
+                margin: 0.5cm !important;
+                size: auto;
+              }
+
+              html, body {
+                height: auto !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: white !important;
+              }
+
+              /* 2. REPARAR ESTRUCTURA: El flex causa la página en blanco en PDFs largos */
+              .flex.min-h-screen {
+                display: block !important;
+              }
+
+              main {
+                margin-left: 0 !important;
+                padding: 0 !important;
+                width: 100% !important;
+              }
+
+              /* 3. VISIBILIDAD DE TÍTULOS: Forzamos el renderizado de SectionHeader */
+              .SectionHeader, [class*="SectionHeader"] {
+                display: block !important;
+                visibility: visible !important;
+                background-color: #f1f5f9 !important; /* Gris suave */
+                border-left: 12px solid #143d1f !important; /* Verde Campos de Aragón */
+                padding: 20px !important;
+                margin: 30px 0 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                break-inside: avoid;
+              }
+
+              /* 4. ETIQUETAS DE ASISTENCIA: Para que los botones se vean como tags */
+              .presente-tag, button:contains("PRESENTE"), [class*="bg-blue-600"] {
+                background-color: #2563eb !important;
+                color: white !important;
+                border: none !important;
+                padding: 5px 10px !important;
+                border-radius: 6px !important;
+                -webkit-print-color-adjust: exact !important;
+              }
+
+              /* Ocultar elementos innecesarios */
+              aside, .print\:hidden, button {
+                display: none !important;
+              }
+
+              /* Evitar que las tablas se corten feo */
+              .Card, table, section {
+                page-break-inside: avoid !important;
+                margin-bottom: 20px !important;
               }
             }
           `}} />
