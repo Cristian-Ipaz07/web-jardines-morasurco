@@ -642,283 +642,247 @@ export default function App() {
 
                   
           {/* SECCIÓN 5-6: INFORME DE GESTIÓN COMPLETO */}
-          {activeSection === 'gestion' && (
-            <div className="space-y-16 animate-in slide-in-from-bottom-10 uppercase">
+          {/* SECCIÓN 5-6: INFORME DE GESTIÓN INTEGRAL - RESERVA VALLE DE ATRIZ */}
+          <div className={`${activeSection === 'gestion' ? 'block' : 'hidden'} print:block`}>
+            <div className="space-y-12 animate-in slide-in-from-bottom-10 uppercase">
               <SectionHeader 
-                title="5-6. Informes de Gestión 2025" 
+                title="Informe Integral de Gestión 2025" 
                 icon={TrendingUp} 
                 agendaIndices={[4, 5]} 
                 agendaStatus={agendaStatus} 
                 toggleAgendaItem={toggleAgendaItem} 
               />
-
-              {/* BLOQUE 1: GESTIÓN ADMINISTRATIVA Y OPERATIVA */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div className="lg:col-span-2 space-y-8">
-                  <Card title="1. Estructura Corporativa y Decisiones" icon={Layout} highlight>
-                    <div className="space-y-6 text-[11px] font-bold text-gray-600 leading-relaxed">
-                      <div className="p-6 bg-gray-50 rounded-3xl border-l-8 border-[#D4AF37]">
-                        <p className="text-[#111111] font-black mb-3 text-sm">CONSEJO DE ADMINISTRACIÓN 2025:</p>
-                        <div className="grid grid-cols-2 gap-4 mb-4">
-                          <div>
-                            <p className="text-[#D4AF37] text-[9px] mb-1">PRESIDENTA:</p>
-                            <p className="text-[#1A1A1A]">DRA. PATRICIA FUERTES</p>
-                          </div>
-                          <div>
-                            <p className="text-[#D4AF37] text-[9px] mb-1">VICEPRESIDENTA (REVISIÓN PAGOS):</p>
-                            <p className="text-[#1A1A1A]">DRA. MARÍA ELENA PANTOJA</p>
-                          </div>
-                        </div>
-                        <p className="italic">Gestión documentada en Actas 12 a 17 y Asamblea Extraordinaria.</p>
+              
+              {/* 1. PRESENTACIÓN EJECUTIVA Y GOBIERNO */}
+              <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                <div className="lg:col-span-3">
+                  <Card title="1. Gestión Administrativa y Operativa" icon={Activity}>
+                    <p className="text-sm font-medium text-slate-600 leading-relaxed mb-6 uppercase tracking-tight">
+                      [cite_start]La administración de <span className="text-[#143d24] font-black underline decoration-[#D4AF37]">Ana Lucía Yepez Córdoba</span> [cite: 4, 114] lideró en 2025 decisiones corporativas enfocadas en la modernización tecnológica y el cumplimiento legal. [cite_start]Se destaca la ejecución prioritaria de CCTV con excedentes [cite: 12, 122] [cite_start]y la coordinación con locales comerciales para el uso de cadenas en la bahía[cite: 123].
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                        <ShieldCheck className="text-[#143d24] mb-3" size={24} />
+                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">Talento Humano</p>
+                        [cite_start]<p className="text-xs font-black text-slate-800 italic">Contadora: Andrea Delgado [cite: 17, 127]</p>
                       </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="p-6 bg-white border-2 border-gray-50 rounded-2xl shadow-sm">
-                          <p className="text-[#D4AF37] font-black text-[10px] mb-3 uppercase tracking-widest flex items-center gap-2">
-                            <Activity size={14}/> Talento Humano
-                          </p>
-                          <ul className="space-y-3">
-                            <li className="flex justify-between border-b pb-1"><span>ADMINISTRADORA:</span> <span className="text-[#1A1A1A]">ANA LUCÍA YEPEZ</span></li>
-                            <li className="flex justify-between border-b pb-1"><span>REVISOR FISCAL:</span> <span className="text-[#1A1A1A]">ALFONSO BENNETH</span></li>
-                            <li className="flex justify-between border-b pb-1"><span>NUEVA CONTADORA:</span> <span className="text-[#1A1A1A]">ANDREA DELGADO</span></li>
-                          </ul>
-                        </div>
-                        <div className="p-6 bg-white border-2 border-gray-50 rounded-2xl shadow-sm">
-                          <p className="text-red-600 font-black text-[10px] mb-3 uppercase tracking-widest flex items-center gap-2">
-                            <ShieldAlert size={14}/> Seguridad SGSST
-                          </p>
-                          <p className="mb-2">PROVEEDOR: KUMARA / RICARDO FIERRO</p>
-                          <p className="text-[9px] opacity-70">Implementación de Plan de Emergencias, capacitación en hábitos saludables y auditoría de seguridad social a contratistas.</p>
-                        </div>
+                      <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                        <TrendingUp className="text-[#D4AF37] mb-3" size={24} />
+                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">Financiero</p>
+                        [cite_start]<p className="text-xs font-black text-slate-800 italic">Reducción Cartera Morosa [cite: 26, 131]</p>
                       </div>
-                    </div>
-                  </Card>
-
-                  {/* MODERNIZACIÓN TECNOLÓGICA CCTV */}
-                  <Card title="3. Seguridad Electrónica y CCTV" icon={Camera}>
-                    <div className="p-6 bg-[#1A1A1A] text-white rounded-[32px] mb-6">
-                      <div className="flex items-center gap-6">
-                        <Zap className="text-[#D4AF37]" size={40} />
-                        <div>
-                          <p className="text-[#D4AF37] text-[10px] font-black tracking-widest">MODERNIZACIÓN RADICAL</p>
-                          <p className="text-xs font-bold leading-relaxed">CAMBIO DE CÁMARAS PERIMETRALES POR TECNOLOGÍA PTZ DE ALTA RESOLUCIÓN PARA RECONOCIMIENTO FACIAL Y DE PLACAS.</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                      <div className="p-4 border-2 border-gray-100 rounded-2xl text-center">
-                        <p className="text-[9px] font-black text-gray-400 mb-1">COMISIÓN TÉCNICA</p>
-                        <p className="text-[10px] font-black">RICARDO PAZ / SEDEC</p>
-                      </div>
-                      <div className="p-4 border-2 border-gray-100 rounded-2xl text-center">
-                        <p className="text-[9px] font-black text-gray-400 mb-1">MANTENIMIENTO</p>
-                        <p className="text-[10px] font-black">IMAP INGENIERÍA</p>
-                      </div>
-                      <div className="p-4 border-2 border-gray-100 rounded-2xl text-center">
-                        <p className="text-[9px] font-black text-gray-400 mb-1">REFUERZO FISICO</p>
-                        <p className="text-[10px] font-black">SEGURIDAD DEL SUR</p>
+                      <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                        <HardHat className="text-[#143d24] mb-3" size={24} />
+                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">SGSST</p>
+                        [cite_start]<p className="text-xs font-black text-slate-800 italic">Proveedor: Kumara [cite: 18, 128]</p>
                       </div>
                     </div>
                   </Card>
                 </div>
-
-                {/* LATERAL: SEGUROS Y FINANZAS RÁPIDAS */}
-                <div className="space-y-8">
-                  <div className="bg-[#D4AF37] rounded-[48px] p-10 text-[#1A1A1A] shadow-2xl relative overflow-hidden">
-                    <ShieldCheck className="mb-6 opacity-20 absolute -right-4 -top-4" size={120} />
-                    <h4 className="text-sm font-black uppercase mb-6 tracking-tighter">Póliza Áreas Comunes</h4>
-                    <p className="text-[10px] font-black uppercase opacity-70 mb-1">INTERMEDIARIO:</p>
-                    <p className="font-black text-sm mb-4">HUERTAS GUERRERO</p>
-                    <p className="text-[10px] font-black uppercase opacity-70 mb-1">COMPAÑÍA:</p>
-                    <p className="font-black text-sm mb-8">SEGUROS DEL ESTADO S.A.</p>
-                    <div className="bg-[#1A1A1A] text-[#D4AF37] p-6 rounded-3xl">
-                      <p className="text-[9px] font-black mb-1">VALOR ANUAL:</p>
-                      <p className="text-3xl font-black tracking-tighter">$36.245.385</p>
+                <div className="bg-[#143d24] rounded-3xl p-8 text-white flex flex-col justify-center shadow-xl border-r-8 border-[#D4AF37]">
+                  <Scale size={40} className="text-[#D4AF37] mb-4" />
+                  <h4 className="text-sm font-black uppercase mb-2 tracking-widest leading-tight text-center">Consejo de Administración 2025</h4>
+                  <div className="space-y-4 mt-4">
+                    <div className="border-b border-white/10 pb-2">
+                      <p className="text-[9px] font-black text-[#D4AF37] uppercase">Presidenta</p>
+                      <p className="text-xs font-black">Dra. [cite_start]Patricia Fuertes [cite: 8, 118]</p>
                     </div>
-                  </div>
-
-                  <Card title="Cartera y Finanzas" icon={TrendingUp}>
-                    <div className="space-y-6">
-                      <div className="text-center">
-                        <p className="text-[10px] font-black text-gray-400 mb-1">RECUPERACIÓN EXITOSA</p>
-                        <div className="flex items-center justify-center gap-3">
-                          <p className="text-xl font-black line-through text-red-400">$22M</p>
-                          <ArrowUpRight className="text-green-500" />
-                          <p className="text-3xl font-black text-green-600">$4M</p>
-                        </div>
-                        <p className="text-[9px] font-bold text-gray-400 mt-2">REDUCCIÓN DEL 80% DE MOROSIDAD</p>
-                      </div>
-                      <div className="p-4 bg-gray-50 rounded-2xl border border-gray-100">
-                        <p className="text-[9px] font-black text-[#D4AF37] mb-2 uppercase">RECOMENDACIÓN REVISORÍA:</p>
-                        <p className="text-[10px] font-black">INVERTIR EXCEDENTES EN CDT PARA FONDO DE IMPREVISTOS.</p>
-                      </div>
-                    </div>
-                  </Card>
-                </div>
-              </div>
-
-              {/* SECCIÓN 4: OBRAS Y MANTENIMIENTO */}
-              <div className="space-y-10">
-                <div className="bg-[#1A1A1A] p-12 rounded-[56px] text-white border-b-8 border-[#D4AF37] shadow-2xl relative overflow-hidden">
-                  <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     <div>
-                      <h3 className="text-4xl font-black uppercase tracking-tighter mb-4">Inversión en Infraestructura</h3>
-                      <p className="text-[#D4AF37] font-black text-sm uppercase tracking-[0.3em] mb-8">Mantenimiento Correctivo y Preventivo 2025</p>
-                      <div className="flex gap-6">
-                        <div className="p-6 bg-white/5 rounded-3xl border border-white/10">
-                          <p className="text-[#D4AF37] text-[10px] font-black mb-2">LIMPIEZA FACHADA (4 CARAS)</p>
-                          <p className="text-3xl font-black">$12.191.505</p>
-                          <p className="text-[9px] opacity-50 mt-2">BELLAVISTA / PROYECTOS B&V</p>
-                        </div>
-                      </div>
+                      <p className="text-[9px] font-black text-[#D4AF37] uppercase">Vicepresidenta (Pagos)</p>
+                      <p className="text-xs font-black">Dra. [cite_start]María Elena Pantoja [cite: 9, 119]</p>
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      {[
-                        {t: "MANT. GIMNASIO", v: "$2.616.167", p: "2KFIT CORP"},
-                        {t: "SEÑALIZACIÓN TOTAL", v: "EJECUTADO", p: "A. GUERRERO / C. BOTINA"},
-                        {t: "PULIDO PISOS/GRADAS", v: "EJECUTADO", p: "CARLOS EFRAÍN CALPA"},
-                        {t: "ASCENSORES", v: "MENSUAL", p: "MITSUBISHI ELECTRIC"}
-                      ].map((item, i) => (
-                        <div key={i} className="p-4 bg-white/5 rounded-2xl border border-white/5">
-                          <p className="text-[#D4AF37] text-[8px] font-black">{item.t}</p>
-                          <p className="text-xs font-black">{item.v}</p>
-                          <p className="text-[8px] opacity-40">{item.p}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="absolute top-0 right-0 w-1/3 h-full bg-[#D4AF37]/5 -skew-x-12"></div>
-                </div>
-
-                <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
-                  <ManagementTable 
-                    title="A. Proveedores de Operación Fija"
-                    headers={["Servicio / Concepto", "Proveedor Responsable"]}
-                    data={[
-                      { c: "Vigilancia 24/7", p: "SEGURIDAD DEL SUR LTDA." },
-                      { c: "Aseo Zonas Comunes", p: "CLARITA SOLUCIONES INTEGRALES" },
-                      { c: "Mantenimiento Ascensores", p: "MITSUBISHI ELECTRIC" },
-                      { c: "Administración", p: "ANA LUCÍA YEPEZ CÓRDOBA" },
-                      { c: "Revisoría Fiscal", p: "ALFONSO BENNETH MUÑOZ" },
-                      { c: "Contabilidad", p: "ANDREA DELGADO (ANTERIOR DAYRA GÓMEZ)" },
-                      { c: "Jardines", p: "MAGDALY MERCEDES MAYORGA" },
-                      { c: "Energía Zonas Comunes", p: "ENERTOTAL S.A. ESP" },
-                      { c: "Planta Eléctrica", p: "TECNODIESEL SAS" }
-                    ]}
-                  />
-                  <div className="space-y-8">
-                    <Card title="Mantenimientos Eléctricos y Automatización" icon={Zap}>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-[10px] font-bold">
-                          <div className="p-4 bg-gray-50 rounded-2xl">
-                            <p className="text-[#D4AF37] font-black mb-1">ILUMINACIÓN LED:</p>
-                            <p>Cambio de luminarias y reflectores (Luis H. Barrera / José F. Jojoa).</p>
-                          </div>
-                          <div className="p-4 bg-gray-50 rounded-2xl">
-                            <p className="text-[#D4AF37] font-black mb-1">AHORRO ENERGÍA:</p>
-                            <p>Instalación de sensores de movimiento en shuts, tránsito y pisos.</p>
-                          </div>
-                          <div className="p-4 bg-gray-50 rounded-2xl">
-                            <p className="text-[#D4AF37] font-black mb-1">PUERTA VEHICULAR:</p>
-                            <p>Limpieza profunda de rieles y reparación de fallas recurrentes.</p>
-                          </div>
-                          <div className="p-4 bg-gray-50 rounded-2xl">
-                            <p className="text-[#D4AF37] font-black mb-1">CARPINTERÍA:</p>
-                            <p>Mantenimiento de pasamanos y bolardos (ICOTALLA).</p>
-                          </div>
-                        </div>
-                    </Card>
                   </div>
                 </div>
               </div>
 
-              {/* CONVIVENCIA Y GESTIÓN EXTERNA */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                <Card title="5. Convivencia y Medio Ambiente" icon={ShieldAlert}>
-                  <div className="space-y-4">
-                    <div className="flex gap-4 p-4 bg-red-50 rounded-2xl border border-red-100">
-                      <AlertCircle className="text-red-600 shrink-0" size={20} />
-                      <div>
-                        <p className="text-red-600 font-black text-[11px] uppercase">Régimen Sancionatorio:</p>
-                        <p className="text-[10px] font-bold text-gray-600">MULTA DE $150.000 POR PEATONES INGRESANDO POR PUERTA VEHICULAR O MAL USO DE ESPACIOS.</p>
-                      </div>
-                    </div>
-                    <ul className="grid grid-cols-1 gap-3">
-                      {[
-                        "CIERRE DE SHUTS DE BASURA (DESDE 1 MAYO 2025) PARA FOMENTAR RECICLAJE.",
-                        "PROHIBICIÓN DE MOTOS, BICICLETAS O MATERIALES EN PARQUEADEROS.",
-                        "RETIRO DE FORROS DE ASCENSORES COMO MEDIDA DE PRESIÓN A OBRAS.",
-                        "EXIGENCIA DE IDENTIFICACIÓN PARA VISITANTES Y AGENTES INMOBILIARIOS."
-                      ].map((text, i) => (
-                        <li key={i} className="flex gap-3 items-start text-[10px] font-black text-gray-500 uppercase">
-                          <CheckCircle2 className="text-[#D4AF37] shrink-0" size={14} /> {text}
-                        </li>
-                      ))}
+              {/* 2. SEGURIDAD Y CONTROL DE ACCESO */}
+              <div className="grid grid-cols-1 gap-6">
+                <Card title="Modernización CCTV y Seguridad Física" icon={ShieldCheck} badge="Modernización">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <ul className="space-y-4 text-xs font-bold text-slate-600">
+                      <li className="flex gap-4 p-4 bg-slate-50 rounded-2xl">
+                        <Camera size={24} className="text-[#D4AF37] shrink-0" />
+                        <div>
+                          <span className="text-slate-900 font-black block mb-1">Actualización Tecnológica CCTV</span>
+                          [cite_start]Cambio a cámaras perimetrales de alta resolución y PTZ para reconocimiento facial y de placas[cite: 34, 137]. [cite_start]Mantenimiento de portones con IMAP Ingeniería[cite: 35, 138].
+                        </div>
+                      </li>
+                      <li className="flex gap-4 p-4 bg-slate-50 rounded-2xl">
+                        <Lock size={24} className="text-[#D4AF37] shrink-0" />
+                        <div>
+                          <span className="text-slate-900 font-black block mb-1">Protocolos de Seguridad Física</span>
+                          [cite_start]Orden de bajar ventanilla, identificación de visitantes y apoyo de conserje en horas pico[cite: 39, 41, 142, 144].
+                        </div>
+                      </li>
+                    </ul>
+                    <ul className="space-y-4 text-xs font-bold text-slate-600">
+                      <li className="flex gap-4 p-4 bg-slate-50 rounded-2xl">
+                        <ShieldAlert size={24} className="text-[#D4AF37] shrink-0" />
+                        <div>
+                          <span className="text-slate-900 font-black block mb-1">Convivencia y Sanciones</span>
+                          [cite_start]Clausura de shuts (1 mayo 2025)[cite: 63, 168]. [cite_start]Multas de $150.000 para infractores[cite: 66, 171]. [cite_start]Retiro de forros en ascensores para presionar fin de obras[cite: 68, 173].
+                        </div>
+                      </li>
+                      <li className="flex gap-4 p-4 bg-slate-50 rounded-2xl border-l-4 border-red-500">
+                        <Gavel size={24} className="text-red-500 shrink-0" />
+                        <div>
+                          <span className="text-slate-900 font-black block mb-1">Gestión Externa y Legal</span>
+                          [cite_start]Acción de Tutela contra lote anexo por salubridad[cite: 71, 176]. [cite_start]Peticiones por "terminal ilegal" de taxis[cite: 72, 177]. [cite_start]Gestión por rejilla ante Empopasto[cite: 74, 179].
+                        </div>
+                      </li>
                     </ul>
                   </div>
                 </Card>
+              </div>
 
-                <Card title="6. Gestión Externa y Legal" icon={Gavel}>
-                  <div className="space-y-4">
-                    <div className="p-5 bg-gray-900 rounded-3xl text-white">
-                      <p className="text-[#D4AF37] text-[9px] font-black mb-2 tracking-widest">ACCIONES JUDICIALES:</p>
-                      <p className="text-[11px] font-black leading-relaxed">ACCIÓN DE TUTELA INTERPUESTA CONTRA EL LOTE ANEXO POR PROBLEMAS DE SALUBRIDAD Y FALTA DE RESPUESTA.</p>
+              {/* 3. RELACIÓN COMPLETA DE PROVEEDORES Y GASTOS */}
+              <div className="space-y-6">
+                <div className="bg-[#143d24] p-8 rounded-[40px] text-white flex flex-col md:flex-row justify-between items-center gap-8 shadow-2xl relative overflow-hidden">
+                  <div className="z-10 text-center md:text-left">
+                      <h3 className="text-3xl font-black uppercase tracking-tighter mb-2 italic">Ejecución Financiera 2025</h3>
+                      <p className="text-[#D4AF37] font-bold text-xs uppercase tracking-widest">Proveedores Fijos y Proyectos de Infraestructura</p>
+                  </div>
+                  <div className="absolute top-0 right-0 w-1/2 h-full bg-[#1a4a26] -skew-x-12 translate-x-32 z-0 opacity-50"></div>
+                </div>
+
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+                  {/* Gastos Mensuales Fijos */}
+                  <div className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-lg flex flex-col h-full">
+                    <div className="bg-[#1A1A1A] px-6 py-4 flex items-center gap-3 border-b-4 border-[#D4AF37]">
+                      <BarChart3 className="text-[#D4AF37]" size={20} />
+                      [cite_start]<h4 className="text-xs font-black text-white uppercase tracking-widest">Gastos Fijos (Proveedores Recurrentes) [cite: 79, 184]</h4>
                     </div>
-                    <div className="space-y-3">
-                      {[
-                        {e: "ALCALDÍA / TRÁNSITO", d: "DERECHOS DE PETICIÓN POR 'TERMINAL ILEGAL' DE TAXIS FRENTE AL EDIFICIO."},
-                        {e: "EMPOPASTO / SEPAL", d: "MANTENIMIENTO DE FUENTE DE LA TRANSPARENCIA Y ARREGLO DE REJILLA EXTERNA."},
-                        {e: "GESTIÓN NAVIDAD", d: "SOLICITUD DE PROHIBICIÓN DE VENTAS EN FUENTE PARA EVITAR INSEGURIDAD."}
-                      ].map((item, i) => (
-                        <div key={i} className="border-b border-gray-100 pb-2">
-                          <p className="text-[#D4AF37] text-[9px] font-black">{item.e}:</p>
-                          <p className="text-[10px] font-bold text-gray-500 uppercase">{item.d}</p>
+                    <div className="flex-1 overflow-x-auto">
+                      <table className="w-full text-left text-[11px]">
+                        <thead className="bg-slate-50 text-slate-400 font-black uppercase tracking-tighter border-b">
+                          <tr><th className="px-6 py-3">Concepto</th><th className="px-6 py-3">Proveedor Principal</th></tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-100 uppercase font-bold text-slate-600">
+                          <tr><td className="px-6 py-3 text-slate-900">Vigilancia</td><td className="px-6 py-3">Seguridad del Sur Ltda.</td></tr>
+                          <tr><td className="px-6 py-3 text-slate-900">Aseo Zonas Comunes</td><td className="px-6 py-3">Clarita Soluciones Integrales</td></tr>
+                          <tr><td className="px-6 py-3 text-slate-900">Mantenimiento Ascensores</td><td className="px-6 py-3">Mitsubishi Electric de Colombia</td></tr>
+                          <tr><td className="px-6 py-3 text-slate-900">Administración</td><td className="px-6 py-3">Ana Lucía Yepez Córdoba</td></tr>
+                          <tr><td className="px-6 py-3 text-slate-900">Revisoría Fiscal</td><td className="px-6 py-3">Alfonso Benneth Muñoz</td></tr>
+                          <tr><td className="px-6 py-3 text-slate-900">Contabilidad</td><td className="px-6 py-3">Dayra Gómez / Andrea Delgado</td></tr>
+                          <tr><td className="px-6 py-3 text-slate-900">Energía Zonas Comunes</td><td className="px-6 py-3">Enertotal S.A. ESP</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  {/* Proyectos e Inversiones */}
+                  <div className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-lg flex flex-col h-full">
+                    <div className="bg-[#1A1A1A] px-6 py-4 flex items-center gap-3 border-b-4 border-[#D4AF37]">
+                      <Wrench className="text-[#D4AF37]" size={20} />
+                      [cite_start]<h4 className="text-xs font-black text-white uppercase tracking-widest">Inversiones y Adecuaciones Civiles [cite: 82]</h4>
+                    </div>
+                    <div className="flex-1 overflow-x-auto">
+                      <table className="w-full text-left text-[11px]">
+                        <thead className="bg-slate-50 text-slate-400 font-black uppercase tracking-tighter border-b">
+                          <tr><th className="px-6 py-3">Actividad / Rubro</th><th className="px-6 py-3">Detalle Inversión</th></tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-100 uppercase font-bold text-slate-600">
+                          [cite_start]<tr><td className="px-6 py-3 text-slate-900">Limpieza Fachada</td><td className="px-6 py-3 text-[#143d24] font-black">$12.191.505 (Bellavista) [cite: 46, 146]</td></tr>
+                          [cite_start]<tr><td className="px-6 py-3 text-slate-900">Mantenimiento Gimnasio</td><td className="px-6 py-3">$2.616.167 (2KFIT Corporation) [cite: 58, 158]</td></tr>
+                          [cite_start]<tr><td className="px-6 py-3 text-slate-900">Señalización Integral</td><td className="px-6 py-3">Suministro e instalación total [cite: 48, 148]</td></tr>
+                          [cite_start]<tr><td className="px-6 py-3 text-slate-900">Pulido de Pisos</td><td className="px-6 py-3">Gradas ingreso y cebra peatonal [cite: 49, 149]</td></tr>
+                          [cite_start]<tr><td className="px-6 py-3 text-slate-900">Iluminación LED</td><td className="px-6 py-3">Sensores de ahorro en pisos [cite: 53, 54, 153, 154]</td></tr>
+                          [cite_start]<tr><td className="px-6 py-3 text-slate-900">Seguridad Electrónica</td><td className="px-6 py-3">Tarjetas y arreglo portones [cite: 35, 138]</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 4. GESTIÓN DE RIESGOS (PÓLIZAS DETALLADAS) */}
+              <div className="space-y-6">
+                <Card title="Estructura de Seguros 2025-2026" icon={ShieldCheck} badge="Vigente">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {/* Póliza Copropiedad */}
+                    <div className="space-y-4">
+                      <div className="p-5 bg-emerald-50 rounded-2xl border border-emerald-100">
+                        [cite_start]<p className="text-[10px] font-black text-emerald-800 uppercase mb-1">Póliza Copropiedad Multiriesgo [cite: 186, 189]</p>
+                        <div className="flex justify-between items-end">
+                          <p className="text-2xl font-black text-emerald-950">$36.412.529</p>
+                          <p className="text-[9px] font-bold text-emerald-700 uppercase">Seguros del Estado S.A.</p>
                         </div>
-                      ))}
+                      </div>
+                      <div className="overflow-x-auto rounded-xl border border-slate-100">
+                        <table className="w-full text-left text-[10px] uppercase">
+                          <tbody className="divide-y divide-slate-50 font-bold text-slate-600">
+                            [cite_start]<tr><td className="px-4 py-2">Suma Asegurada Áreas Comunes</td><td className="px-4 py-2 font-black text-slate-900">$38.792.624.397 [cite: 192]</td></tr>
+                            [cite_start]<tr><td className="px-4 py-2">Suma Asegurada Áreas Privadas</td><td className="px-4 py-2 font-black text-slate-900">$6.845.757.246 [cite: 192]</td></tr>
+                            [cite_start]<tr><td className="px-4 py-2">Responsabilidad Civil Extracontractual</td><td className="px-4 py-2 font-black text-slate-900">$1.000.000.000 [cite: 192]</td></tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                    {/* Póliza D&O */}
+                    <div className="space-y-4">
+                      <div className="p-5 bg-[#1A1A1A] rounded-2xl border border-slate-800 text-white relative overflow-hidden">
+                        <Scale size={80} className="absolute -right-4 -bottom-4 opacity-10 text-[#D4AF37]" />
+                        [cite_start]<p className="text-[10px] font-black text-[#D4AF37] uppercase mb-1 tracking-widest">Responsabilidad Civil D&O [cite: 193, 196]</p>
+                        <div className="flex justify-between items-end">
+                          <p className="text-3xl font-black tracking-tighter leading-none">$500.000.000</p>
+                          [cite_start]<p className="text-[9px] font-bold text-[#D4AF37] uppercase">Límite Agregado Anual [cite: 198]</p>
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="p-3 bg-slate-50 rounded-xl text-center border border-slate-100">
+                          <p className="text-[8px] font-black text-slate-400 uppercase mb-1">Prácticas Laborales</p>
+                          [cite_start]<p className="text-xs font-black text-slate-800">$70.000.000 [cite: 198]</p>
+                        </div>
+                        <div className="p-3 bg-slate-50 rounded-xl text-center border border-slate-100">
+                          <p className="text-[8px] font-black text-slate-400 uppercase mb-1">Defensa Contaminación</p>
+                          [cite_start]<p className="text-xs font-black text-slate-800">$140.000.000 [cite: 198]</p>
+                        </div>
+                        <div className="p-3 bg-slate-50 rounded-xl text-center border border-slate-100">
+                          <p className="text-[8px] font-black text-slate-400 uppercase mb-1">Deducible Copropiedad</p>
+                          [cite_start]<p className="text-xs font-black text-slate-800">$25.000.000 [cite: 97, 198]</p>
+                        </div>
+                        <div className="p-3 bg-slate-50 rounded-xl text-center border border-slate-100 flex items-center justify-center">
+                          [cite_start]<p className="text-[9px] font-black text-[#143d24] uppercase italic">Demás Amparos Sin Deducible [cite: 98]</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </Card>
               </div>
 
-              {/* PÓLIZA D&O DETALLADA */}
-              <Card title="Póliza de Responsabilidad Civil Directivos y Administradores (D&O)" className="bg-[#1A1A1A] text-white border-none shadow-2xl overflow-hidden">
-                <div className="relative z-10">
-                  <div className="flex flex-col md:flex-row justify-between items-center gap-10 mb-10">
-                    <div>
-                        <p className="text-[#D4AF37] text-[10px] font-black tracking-[0.4em] mb-2 uppercase">Límite Agregado Anual</p>
-                        <p className="text-7xl font-black tracking-tighter leading-none">$500.000.000</p>
-                        <p className="text-xs font-bold text-gray-400 mt-4">PÓLIZA No. 41-01-101000229 | VIGENCIA HASTA MAYO 2026</p>
-                    </div>
-                    <div className="bg-white/5 p-8 rounded-[40px] border border-white/10 text-center w-full md:w-80">
-                        <ShieldCheck size={48} className="text-[#D4AF37] mx-auto mb-4" />
-                        <p className="text-[9px] font-black opacity-60 uppercase mb-2">Deducible Copropiedad:</p>
-                        <p className="text-2xl font-black">$25.000.000</p>
-                        <p className="text-[9px] font-black text-green-400 mt-2 uppercase">DEMÁS AMPAROS: SIN DEDUCIBLE</p>
-                    </div>
+              {/* 5. RECOMENDACIONES Y OBSERVACIONES IMPORTANTES */}
+              <div className="space-y-6">
+                <SectionHeader title="5. Recomendaciones Finales" icon={Info} agendaIndices={[5]} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="p-6 bg-[#143d24]/5 rounded-3xl border-2 border-[#143d24]/10">
+                    <p className="text-[#143d24] font-black text-xs uppercase mb-3 flex items-center gap-2">
+                      <PieChart size={18} /> Inversión de Excedentes
+                    </p>
+                    <p className="text-[10px] font-bold text-slate-600 leading-relaxed uppercase tracking-tight italic">
+                      [cite_start]Recomendación del Revisor Fiscal: Invertir recursos en CDT para completar fondo de imprevistos[cite: 27, 132].
+                    </p>
                   </div>
-                  
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                    {[
-                      {l: "DEFENSA LEGAL", v: "$50M"},
-                      {l: "PRÁCTICAS LABORALES", v: "$70M"},
-                      {l: "GASTOS PUBLICIDAD", v: "$50M"},
-                      {l: "DEFENSA CONTAMINACIÓN", v: "$140M"}
-                    ].map((item, i) => (
-                      <div key={i} className="p-4 bg-white/5 rounded-2xl border border-white/5 text-center">
-                        <p className="text-[#D4AF37] text-[8px] font-black mb-1 uppercase tracking-widest">{item.l}</p>
-                        <p className="text-sm font-black">{item.v}</p>
-                      </div>
-                    ))}
+                  <div className="p-6 bg-[#143d24]/5 rounded-3xl border-2 border-[#143d24]/10">
+                    <p className="text-[#143d24] font-black text-xs uppercase mb-3 flex items-center gap-2">
+                      <TrendingUp size={18} /> Avalúo Técnico
+                    </p>
+                    <p className="text-[10px] font-bold text-slate-600 leading-relaxed uppercase tracking-tight italic">
+                      [cite_start]Mantener actualizado el avalúo técnico para evitar infraseguro en áreas comunes y equipos[cite: 103, 203].
+                    </p>
                   </div>
-
-                  <div className="mt-8 p-6 bg-red-900/20 border border-red-900/30 rounded-2xl">
-                    <p className="text-red-400 text-[9px] font-black mb-1 uppercase tracking-widest">Exclusiones Importantes:</p>
-                    <p className="text-[10px] font-bold text-gray-400">NO CUBRE RECLAMACIONES POR CARTERA MOROSA, INCUMPLIMIENTO DE PRESUPUESTO O MULTAS GUBERNAMENTALES.</p>
+                  <div className="p-6 bg-[#143d24]/5 rounded-3xl border-2 border-[#143d24]/10">
+                    <p className="text-[#143d24] font-black text-xs uppercase mb-3 flex items-center gap-2">
+                      <Clock size={18} /> Garantía de Pagos
+                    </p>
+                    <p className="text-[10px] font-bold text-slate-600 leading-relaxed uppercase tracking-tight italic">
+                      [cite_start]Pago prima multiriesgo (45 días) y D&O (30 días) para mantener vigencia de amparos[cite: 100, 101, 200, 201].
+                    </p>
                   </div>
                 </div>
-                <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-[#D4AF37]/10 rounded-full blur-3xl"></div>
-              </Card>
+              </div>
             </div>
-          )}        
+          </div>      
           
 
           {/* SECCIÓN 7-8: FINANCIERO */}
