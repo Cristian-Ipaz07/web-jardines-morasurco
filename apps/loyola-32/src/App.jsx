@@ -211,7 +211,9 @@ export default function App() {
                     <td className="px-10 py-5 italic text-slate-500 lowercase first-letter:uppercase">{row.detalle}</td>
                     <td className="px-10 py-5 text-center">
                       <span className="bg-[#E65100]/10 text-[#E65100] px-4 py-1.5 rounded-lg border border-[#E65100]/20 font-black">
-                          {row.valor}
+                          <td className="px-10 py-5 text-center">
+                            {row.valor}
+                          </td>
                       </span>
                     </td>
                   </tr>
@@ -695,35 +697,30 @@ export default function App() {
             <div className="space-y-16 animate-in slide-in-from-bottom-10 uppercase">
               <SectionHeader title="6. Informe Integral de Gestión 2025" icon={TrendingUp} agendaIndices={[5]} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
 
-              {/* 1. PRESENTACIÓN EJECUTIVA (LOS 3 PILARES) */}
+              {/* 1. PRESENTACIÓN EJECUTIVA */}
               <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                 <div className="lg:col-span-3">
                   <Card title="1. Resumen de Ejecución Administrativa" icon={Activity} highlight>
-                    {/* Aumento a text-lg para lectura clara */}
-                    <p className="text-lg font-bold text-slate-700 leading-relaxed mb-8 uppercase tracking-tight">
+                    {/* Letra de descripción más grande para proyector */}
+                    <p className="text-xl font-bold text-slate-700 leading-relaxed mb-8 uppercase tracking-tight">
                       Durante el periodo 2025, la administración ejecutó acciones clave enfocadas en la <span className="text-[#1A4B84] font-black underline decoration-[#E65100] decoration-4">optimización de servicios verticales</span>, la recuperación de la <span className="text-[#1A4B84] font-black underline decoration-[#E65100] decoration-4">infraestructura hidráulica</span> y el fortalecimiento de la seguridad perimetral y vehicular.
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      <div className="p-6 bg-slate-50 rounded-3xl border-2 border-[#1A4B84]/20 shadow-sm">
-                        <Wrench className="text-[#E65100] mb-4" size={32} />
-                        <p className="text-[12px] font-black text-[#1A4B84] uppercase tracking-[0.2em] mb-2">Pilar A</p>
-                        <p className="text-sm font-black text-slate-900">Mantenimiento Locativo</p>
-                      </div>
-                      <div className="p-6 bg-slate-50 rounded-3xl border-2 border-[#1A4B84]/20 shadow-sm">
-                        <ShieldCheck className="text-[#E65100] mb-4" size={32} />
-                        <p className="text-[12px] font-black text-[#1A4B84] uppercase tracking-[0.2em] mb-2">Pilar B</p>
-                        <p className="text-sm font-black text-slate-900">Seguridad y Convivencia</p>
-                      </div>
-                      <div className="p-6 bg-slate-50 rounded-3xl border-2 border-[#1A4B84]/20 shadow-sm">
-                        <Scale className="text-[#E65100] mb-4" size={32} />
-                        <p className="text-[12px] font-black text-[#1A4B84] uppercase tracking-[0.2em] mb-2">Pilar C</p>
-                        <p className="text-sm font-black text-slate-900">Gestión Legal y Cartera</p>
-                      </div>
+                      {[
+                        { icon: Wrench, pilar: "A", desc: "Mantenimiento Locativo" },
+                        { icon: ShieldCheck, pilar: "B", desc: "Seguridad y Convivencia" },
+                        { icon: Scale, pilar: "C", desc: "Gestión Legal y Cartera" }
+                      ].map((item, i) => (
+                        <div key={i} className="p-6 bg-slate-50 rounded-3xl border-2 border-[#1A4B84]/20 shadow-sm">
+                          <item.icon className="text-[#E65100] mb-4" size={32} />
+                          <p className="text-[12px] font-black text-[#1A4B84] uppercase tracking-[0.2em] mb-2">Pilar {item.pilar}</p>
+                          <p className="text-base font-black text-slate-900">{item.desc}</p>
+                        </div>
+                      ))}
                     </div>
                   </Card>
                 </div>
                 
-                {/* Cuadro lateral de Administración */}
                 <div className="bg-[#1A4B84] rounded-[40px] p-10 text-white flex flex-col justify-center shadow-2xl border-r-[12px] border-[#E65100]">
                   <Building2 size={48} className="text-[#E65100] mb-6" />
                   <h4 className="text-xs font-black uppercase mb-4 tracking-[0.3em] text-white/70">Administración</h4>
@@ -740,7 +737,7 @@ export default function App() {
                 </div>
               </div>
 
-              {/* 2. GASTOS MENSUALES FIJOS (TABLA) */}
+              {/* 2. GASTOS MENSUALES FIJOS */}
               <div className="bg-white rounded-[40px] border-4 border-[#1A4B84]/10 overflow-hidden shadow-2xl flex flex-col">
                 <div className="bg-[#1A4B84] px-10 py-7 flex items-center gap-6">
                   <BarChart3 className="text-[#E65100]" size={28} />
@@ -764,8 +761,8 @@ export default function App() {
                         { p: "Cedenar / Empopasto / Emas", c: "Servicios Públicos (Promedios)" }
                       ].map((row, i) => (
                         <tr key={i} className="hover:bg-[#1A4B84]/5 transition-colors">
-                          <td className="px-10 py-6 text-[#1A4B84] font-black text-[14px]">{row.p}</td>
-                          <td className="px-10 py-6 text-[14px]">{row.c}</td>
+                          <td className="px-10 py-6 text-[#1A4B84] font-black text-[15px]">{row.p}</td>
+                          <td className="px-10 py-6 text-[15px]">{row.c}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -773,52 +770,99 @@ export default function App() {
                 </div>
               </div>
 
-              {/* 3. DETALLE DE INVERSIONES POR SISTEMA */}
-              <div className="grid grid-cols-1 gap-12">
-                <InvestmentTable title="1. Sistema de Accesos Vehiculares" total="Operativo" icon={Zap} photos={["/img/VE.jpeg"]}
-                  data={[
-                    { proveedor: "Manuel Quelal", detalle: "Suministro e instalación Brazo Accessmatic (Sustitución maquinaria)", valor: "EJECUTADO" },
-                    { proveedor: "Manuel Quelal", detalle: "Programación control de acceso y sensores parqueadero inferior", valor: "EJECUTADO" },
-                    { proveedor: "Manuel Quelal", detalle: "Mantenimiento puerta vehicular y fotoceldas", valor: "AL DÍA" }
-                  ]} />
+              {/* 3. DETALLE DE INVERSIONES - (Se mantiene igual tu lógica de InvestmentTable) */}
+              {/* 3. DETALLE DE INVERSIONES POR SISTEMA - FUENTES OPTIMIZADAS */}
+                <div className="grid grid-cols-1 gap-12">
+                  <InvestmentTable 
+                    title="1. Sistema de Accesos Vehiculares" 
+                    total="Operativo" 
+                    icon={Zap} 
+                    photos={["/img/VE.jpeg"]}
+                    data={[
+                      { proveedor: "Manuel Quelal", detalle: "Suministro e instalación Brazo Accessmatic (Sustitución maquinaria)", valor: "EJECUTADO" },
+                      { proveedor: "Manuel Quelal", detalle: "Programación control de acceso y sensores parqueadero inferior", valor: "EJECUTADO" },
+                      { proveedor: "Manuel Quelal", detalle: "Mantenimiento puerta vehicular y fotoceldas", valor: "AL DÍA" }
+                    ].map(item => ({ ...item, detalle: <span className="text-[13px] font-bold leading-tight">{item.detalle}</span> }))} 
+                  />
 
-                <InvestmentTable title="2. Sistema Hidráulico y Redes" total="Reparado" icon={Droplets} photos={["/img/HI1.jpeg", "/img/HI2.jpeg", "/img/HI3.jpeg"]}
-                  data={[
-                    { proveedor: "Jhon Franco Cuatin", detalle: "Reparación equipos presión constante y bombas", valor: "EJECUTADO" },
-                    { proveedor: "Hydroflow", detalle: "Suministro e instalación equipo Hydroflow", valor: "EJECUTADO" },
-                    { proveedor: "Jhon Franco Cuatin", detalle: "Búsqueda y reparación de fuga de malos olores (Apto 1003)", valor: "SOLUCIONADO" }
-                  ]} />
+                  <InvestmentTable 
+                    title="2. Sistema Hidráulico y Redes" 
+                    total="Reparado" 
+                    icon={Droplets} 
+                    photos={["/img/HI1.jpeg", "/img/HI2.jpeg", "/img/HI3.jpeg"]}
+                    data={[
+                      { proveedor: "Jhon Franco Cuatin", detalle: "Reparación equipos presión constante y bombas", valor: "EJECUTADO" },
+                      { proveedor: "Hydroflow", detalle: "Suministro e instalación equipo Hydroflow", valor: "EJECUTADO" },
+                      { proveedor: "Jhon Franco Cuatin", detalle: "Búsqueda y reparación de fuga de malos olores (Apto 1003)", valor: "SOLUCIONADO" }
+                    ].map(item => ({ ...item, detalle: <span className="text-[13px] font-bold leading-tight">{item.detalle}</span> }))} 
+                  />
 
-                <InvestmentTable title="3. Reparaciones Locativas y Estructurales" total="Mejorado" icon={Wrench} photos={["/img/rep1.jpeg", "/img/rep2.jpeg", "/img/rep3.jpeg", "/img/rep4.jpeg"]}
-                  data={[
-                    { proveedor: "Andina de Materiales", detalle: "Compra de impermeabilizante para terraza y cubiertas", valor: "EJECUTADO" },
-                    { proveedor: "Ariel Iván Pinto", detalle: "Reparación cielo raso salón comunal y pintura Apto 1102", valor: "EJECUTADO" },
-                    { proveedor: "Jose Jojoa", detalle: "Compra de manila para mantenimiento general", valor: "SUMINISTRADO" }
-                  ]} />
+                  <InvestmentTable 
+                    title="3. Reparaciones Locativas y Estructurales" 
+                    total="Mejorado" 
+                    icon={Wrench} 
+                    photos={["/img/rep1.jpeg", "/img/rep2.jpeg", "/img/rep3.jpeg", "/img/rep4.jpeg"]}
+                    data={[
+                      { proveedor: "Andina de Materiales", detalle: "Compra de impermeabilizante para terraza y cubiertas", valor: "EJECUTADO" },
+                      { proveedor: "Ariel Iván Pinto", detalle: "Reparación cielo raso salón comunal y pintura Apto 1102", valor: "EJECUTADO" },
+                      { proveedor: "Jose Jojoa", detalle: "Compra de manila para mantenimiento general", valor: "SUMINISTRADO" }
+                    ].map(item => ({ ...item, detalle: <span className="text-[13px] font-bold leading-tight">{item.detalle}</span> }))} 
+                  />
 
-                <InvestmentTable title="4. Planta Eléctrica y Energía" total="Vigente" icon={Zap} photos={["/img/PE1.jpeg", "/img/PE2.jpeg", "/img/PE3.jpeg"]}
-                  data={[
-                    { proveedor: "Cummins de los Andes", detalle: "Mantenimiento preventivo Planta Eléctrica (Anual)", valor: "3 SESIONES" },
-                    { proveedor: "Albeiro Bastidas", detalle: "Suministro e instalación batería Varta Black 4D", valor: "NUEVO" },
-                    { proveedor: "Luis Libardo Yanguatin", detalle: "Configuración y revisión de transferencia de emergencia", valor: "AL DÍA" }
-                  ]} />
+                  <InvestmentTable 
+                    title="4. Planta Eléctrica y Energía" 
+                    total="Vigente" 
+                    icon={Zap} 
+                    photos={["/img/PE1.jpeg", "/img/PE2.jpeg", "/img/PE3.jpeg"]}
+                    data={[
+                      { proveedor: "Cummins de los Andes", detalle: "Mantenimiento preventivo Planta Eléctrica (Anual)", valor: "3 SESIONES" },
+                      { proveedor: "Albeiro Bastidas", detalle: "Suministro e instalación batería Varta Black 4D", valor: "NUEVO" },
+                      { proveedor: "Luis Libardo Yanguatin", detalle: "Configuración y revisión de transferencia de emergencia", valor: "AL DÍA" }
+                    ].map(item => ({ ...item, detalle: <span className="text-[13px] font-bold leading-tight">{item.detalle}</span> }))} 
+                  />
 
-                <InvestmentTable title="5. Ascensores (Reparaciones Adicionales)" total="En Ajuste" icon={ArrowUpRight} photos={["/img/AS.jpeg"]}
-                  data={[
-                    { proveedor: "Ascensur Elevadores", detalle: "Cambio de proveedor tras inconformidad con Greenergy", valor: "NUEVO CONTRATO" },
-                    { proveedor: "Ascensur SAS", detalle: "Ajuste excéntricas, tensión de guayas y renivelación", valor: "50% AVANCE" },
-                    { proveedor: "Greenergy", detalle: "Compra de zapatas de cabina e inductor tipo tabaco", valor: "INSTALADO" }
-                  ]} />
+                  <InvestmentTable
+                    title="5. Ascensores (Reparaciones Adicionales)"
+                    total="En Ajuste"
+                    icon={ArrowUpRight}
+                    photos={["/img/AS.jpeg"]}
+                    data={[
+                      {
+                        proveedor: "Ascensur Elevadores",
+                        detalle: <span className="text-[13px] font-bold leading-tight">Cambio de proveedor tras inconformidad con Greenergy</span>,
+                        valor: (
+                          <div className="flex items-center justify-end gap-4 min-w-[180px]">
+                            <span className="text-[#E65100] font-black text-[12px] tracking-tighter">NUEVO CONTRATO</span>
+                            <a
+                              href="https://docs.google.com/document/d/1usgCxDjPohUrvfhlZJpTVPx1ygAA_bFy/edit?usp=sharing"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center justify-center w-10 h-10 bg-[#1A4B84] text-white rounded-xl hover:bg-[#E65100] transition-all shadow-lg active:scale-90 shrink-0"
+                            >
+                              <FileText size={20} />
+                            </a>
+                          </div>
+                        )
+                      },
+                      { proveedor: "Ascensur SAS", detalle: <span className="text-[13px] font-bold">Ajuste excéntricas, tensión de guayas y renivelación</span>, valor: "50% AVANCE" },
+                      { proveedor: "Greenergy", detalle: <span className="text-[13px] font-bold">Compra de zapatas de cabina e inductor tipo tabaco</span>, valor: "INSTALADO" }
+                    ]}
+                  />
 
-                <InvestmentTable title="6. Seguridad Electrónica y Operativos" total="Monitoreado" icon={Camera} photos={[]}    
-                  data={[
-                    { proveedor: "Hernando Tarapuez", detalle: "Revisión de cámaras CCTV, adaptadores y video balum", valor: "EJECUTADO" },
-                    { proveedor: "Paola Alejandra Coral", detalle: "Servicio de desratización y control de roedores", valor: "CERTIFICADO" },
-                    { proveedor: "Jose Francisco Jojoa", detalle: "Instalación y revisión de series navideñas", valor: "TEMPORADA" }
-                  ]} />
-              </div>
+                  <InvestmentTable 
+                    title="6. Seguridad Electrónica y Operativos" 
+                    total="Monitoreado" 
+                    icon={Camera} 
+                    photos={[]}    
+                    data={[
+                      { proveedor: "Hernando Tarapuez", detalle: "Revisión de cámaras CCTV, adaptadores y video balum", valor: "EJECUTADO" },
+                      { proveedor: "Paola Alejandra Coral", detalle: "Servicio de desratización y control de roedores", valor: "CERTIFICADO" },
+                      { proveedor: "Jose Francisco Jojoa", detalle: "Instalación y revisión de series navideñas", valor: "TEMPORADA" }
+                    ].map(item => ({ ...item, detalle: <span className="text-[13px] font-bold leading-tight">{item.detalle}</span> }))} 
+                  />
+                </div>
 
-              {/* 4. GESTIÓN DE RIESGOS (PÓLIZAS) */}
+              {/* 4. GESTIÓN DE RIESGOS (PÓLIZAS) - AJUSTE DE VALOR D&O */}
               <div className="space-y-12">
                 <div className="bg-[#E65100] p-12 rounded-[50px] text-white flex flex-col md:flex-row justify-between items-center gap-8 shadow-2xl relative overflow-hidden">
                   <div className="z-10 text-center md:text-left">
@@ -834,11 +878,11 @@ export default function App() {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                         <div className="p-6 bg-slate-50 rounded-3xl border-2 border-[#1A4B84]/10 shadow-inner">
                           <p className="text-[11px] font-black text-[#4B6A88] uppercase mb-1 tracking-widest">Fin Vigencia</p>
-                          <p className="text-sm font-black text-[#1A4B84]">24 DE AGOSTO DE 2026</p>
+                          <p className="text-base font-black text-[#1A4B84]">24 DE AGOSTO DE 2026</p>
                         </div>
                         <div className="p-6 bg-slate-50 rounded-3xl border-2 border-[#1A4B84]/10 shadow-inner">
                           <p className="text-[11px] font-black text-[#4B6A88] uppercase mb-1 tracking-widest">Prima Total</p>
-                          <p className="text-sm font-black text-[#E65100]">$6.663.423 (IVA INCL.)</p>
+                          <p className="text-base font-black text-[#E65100]">$6.663.423 (IVA INCL.)</p>
                         </div>
                       </div>
                       <div className="overflow-x-auto rounded-[32px] border-4 border-slate-50">
@@ -847,10 +891,14 @@ export default function App() {
                             <tr><th className="px-6 py-4 text-[12px]">Amparo</th><th className="px-6 py-4 text-[12px]">Valor Asegurado</th></tr>
                           </thead>
                           <tbody className="divide-y divide-slate-50 font-bold text-slate-700">
-                            <tr><td className="px-6 py-4 text-[13px]">Bienes Comunes</td><td className="px-6 py-4 font-black text-[13px] text-[#1A4B84]">$5.000.000.000</td></tr>
-                            <tr><td className="px-6 py-4 text-[13px]">Bienes Privados</td><td className="px-6 py-4 font-black text-[13px] text-[#1A4B84]">$1.300.000.000</td></tr>
-                            <tr><td className="px-6 py-4 text-[13px]">Maquinaria y Equipo</td><td className="px-6 py-4 font-black text-[13px] text-[#1A4B84]">$620.000.000</td></tr>
-                            <tr><td className="px-6 py-4 text-[13px]">Resp. Civil Extracontractual</td><td className="px-6 py-4 font-black text-[13px] text-[#1A4B84]">$300.000.000</td></tr>
+                            {[
+                              { a: "Bienes Comunes", v: "$5.000.000.000" },
+                              { a: "Bienes Privados", v: "$1.300.000.000" },
+                              { a: "Maquinaria y Equipo", v: "$620.000.000" },
+                              { a: "Resp. Civil Extracontractual", v: "$300.000.000" }
+                            ].map((item, i) => (
+                              <tr key={i}><td className="px-6 py-4 text-[14px]">{item.a}</td><td className="px-6 py-4 font-black text-[14px] text-[#1A4B84]">{item.v}</td></tr>
+                            ))}
                           </tbody>
                         </table>
                       </div>
@@ -860,17 +908,20 @@ export default function App() {
                   <div className="space-y-8">
                     <Card title="Póliza D&O (Directivos)" icon={Scale} highlight>
                       <div className="space-y-8 relative z-10">
-                        <div>
+                        <div className="overflow-hidden">
                           <p className="text-[11px] text-[#E65100] font-black uppercase tracking-[0.3em] mb-2">Errores y Omisiones</p>
-                          <p className="text-6xl font-black text-[#1A4B84] leading-none tracking-tighter">$100.000.000</p>
+                          {/* Ajuste de tamaño para evitar desborde */}
+                          <p className="text-5xl font-black text-[#1A4B84] leading-none tracking-tighter break-all">
+                            $100.000.000
+                          </p>
                         </div>
-                        <p className="text-sm text-slate-600 leading-relaxed font-bold italic border-l-4 border-[#E65100] pl-6">
+                        <p className="text-base text-slate-600 leading-relaxed font-bold italic border-l-4 border-[#E65100] pl-6">
                           Protección patrimonial para directores y administrador ante reclamaciones por errores u omisiones en su gestión.
                         </p>
                         <div className="pt-8 border-t-2 border-slate-100 flex justify-between items-end">
                           <div>
                             <span className="text-[10px] font-black uppercase text-[#E65100] block mb-1 tracking-widest">Inversión Anual:</span>
-                            <span className="text-2xl font-black text-[#1A4B84] tracking-tight">$166.600</span>
+                            <span className="text-3xl font-black text-[#1A4B84] tracking-tight">$166.600</span>
                           </div>
                           <div className="text-right">
                             <span className="bg-emerald-600 text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">ACTIVA</span>
@@ -880,6 +931,67 @@ export default function App() {
                     </Card>
                   </div>
                 </div>
+              </div>
+
+              {/* 5. ACTIVIDADES PENDIENTES - TABLA MEJORADA */}
+              {/* 5. ACTIVIDADES PENDIENTES - TABLA CON SUBPUNTOS Y COTIZACIONES */}
+              <div className="space-y-8">
+                <SectionHeader title="5. Proyectos & Pendientes 2026" icon={Settings} agendaIndices={[5]} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
+                <Card highlight>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left text-sm uppercase font-black">
+                      <thead className="bg-[#1A4B84] text-white font-black border-b-4 border-[#E65100]">
+                        <tr>
+                          <th className="px-8 py-5 text-[13px]">Actividad / Gestión</th>
+                          <th className="px-8 py-5 text-[13px]">Estado</th>
+                          <th className="px-8 py-5 text-[13px]">Observación / Cotizaciones</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y-2 divide-slate-100 text-slate-700">
+                        {/* FILA 1: FACHADA */}
+                        <tr>
+                          <td className="px-8 py-6 text-[14px] align-top">Fachada e Impermeabilización</td>
+                          <td className="px-8 py-6 align-top">
+                            <span className="bg-red-100 text-red-700 px-4 py-2 rounded-full text-[11px] font-black">EN COTIZACIÓN</span>
+                          </td>
+                          <td className="px-8 py-6">
+                            <p className="text-[13px] text-slate-500 font-bold italic mb-4">Se requiere definir intervención prioritaria.</p>
+                            <div className="space-y-3">
+                              <div className="flex items-center gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span className="text-[12px] text-[#1A4B84]">1. COTIZACIÓN CASA ANDINA: <strong className="text-slate-900">$93.761.055</strong></span>
+                                <a href="https://drive.google.com/file/d/1mmWdYGNuGaC1FwhKqK2Kschct1pRegKo/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="text-[#E65100] hover:scale-110 transition-transform">
+                                  <FileText size={18} />
+                                </a>
+                              </div>
+                              <div className="flex items-center gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span className="text-[12px] text-[#1A4B84]">2. COTIZACIÓN CEID SAS: <strong className="text-slate-900">$84.309.314</strong></span>
+                                <a href="https://drive.google.com/file/d/1q6iMvq60o3hjs3Hhz4c1rUNWBfZA-WvK/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="text-[#E65100] hover:scale-110 transition-transform">
+                                  <FileText size={18} />
+                                </a>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        {/* FILA 2: CANALES PARQUEADERO */}
+                        <tr>
+                          <td className="px-8 py-6 text-[14px] align-top">Instalación canales parqueadero</td>
+                          <td className="px-8 py-6 align-top">
+                            <span className="bg-[#E65100]/10 text-[#E65100] px-4 py-2 rounded-full text-[11px] font-black">EN COTIZACIÓN</span>
+                          </td>
+                          <td className="px-8 py-6">
+                            <p className="text-[13px] text-slate-500 font-bold italic mb-4">Se requiere aprobación de la cotización.</p>
+                            <div className="flex items-center gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200">
+                              <span className="text-[12px] text-[#1A4B84]">COTIZACIÓN BERTIANDES: <strong className="text-slate-900">$2.200.000</strong></span>
+                              <a href="https://drive.google.com/file/d/1m-NwKJ9bBUs2dhHCL8tJGtfSYDYLfDdT/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="text-[#E65100] hover:scale-110 transition-transform">
+                                <FileText size={18} />
+                              </a>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </Card>
               </div>
             </div>
           )}
@@ -898,8 +1010,8 @@ export default function App() {
                  </Card>
                  <Card title="Análisis de Cartera" icon={DollarSign}>
                     <div className="p-10 bg-[#1A4B84]/5 rounded-[40px] border-2 border-[#1A4B84]/10 text-center flex flex-col items-center justify-center h-full">
-                       <p className="text-4xl font-black text-[#1A4B84] mb-4 leading-none">RECAUDO EFECTIVO</p>
-                       <p className="text-[10px] font-black text-[#4B6A88] uppercase tracking-[0.3em] leading-loose">Optimización de cartera morosa mediante acuerdos de pago y gestión persuasiva.</p>
+                       <p className="text-4xl font-black text-[#1A4B84] mb-4 leading-none"> EFECTIVO</p>
+                       <p className="text-[10px] font-black text-[#4B6A88] uppercase tracking-[0.3em] leading-loose">Optimización de cartera morosa mediante gestión persuasiva.</p>
                        <div className="mt-8 bg-[#1A4B84] text-white px-8 py-3 rounded-full font-black text-xs shadow-lg">CARTERA SANA</div>
                     </div>
                  </Card>
