@@ -643,8 +643,15 @@ export default function App() {
                     <div className="p-6 bg-slate-50 rounded-[28px] border-2 border-[#1A4B84]/10 mb-8">
                       <p className="text-[11px] font-black text-[#4B6A88] mb-4">MIEMBROS QUE VERIFICARON EL ACTA:</p>
                       <ul className="space-y-3 font-black text-sm text-[#1A4B84] mb-6">
-                          <li className="flex items-center gap-3"><CheckCircle2 size={16}/> Diana Narvaez (Unidad 202)</li>
-                          <li className="flex items-center gap-3"><CheckCircle2 size={16}/> Adriana Sanchez (Unidad 402)</li>
+                          <li className="flex items-center gap-3">
+                            <CheckCircle2 size={16}/> Mary Ordoñez (Unidad 705)
+                          </li>
+                          <li className="flex items-center gap-3">
+                            <CheckCircle2 size={16}/> Aida Arciniegas (Unidad 902)
+                          </li>
+                          <li className="flex items-center gap-3">
+                            <CheckCircle2 size={16}/> Mónica Agreda (Unidad 701)
+                          </li>   
                       </ul>
 
                       {/* BOTÓN DRIVE - ESTILO LOYOLA */}
@@ -773,7 +780,9 @@ export default function App() {
                   title="1. Sistema de Accesos Vehiculares" 
                   total="Operativo" 
                   icon={Zap}
-                  photos={["/img/puerta1.jpg", "/img/puerta2.jpg"]}
+                  photos={[
+                    "/img/VE.jpeg"
+                  ]}
                   data={[
                     { proveedor: "Manuel Quelal", detalle: "Suministro e instalación Brazo Accessmatic (Sustitución maquinaria)", valor: "EJECUTADO" },
                     { proveedor: "Manuel Quelal", detalle: "Programación control de acceso y sensores parqueadero inferior", valor: "EJECUTADO" },
@@ -785,7 +794,11 @@ export default function App() {
                   title="2. Sistema Hidráulico y Redes" 
                   total="Reparado" 
                   icon={Droplets}
-                  photos={["/img/bomba1.jpg", "/img/bomba2.jpg"]}
+                  photos={[
+                    "/img/HI1.jpeg", 
+                    "/img/HI2.jpeg", 
+                    "/img/HI3.jpeg"
+                  ]}
                   data={[
                     { proveedor: "Jhon Franco Cuatin", detalle: "Reparación equipos presión constante y bombas", valor: "EJECUTADO" },
                     { proveedor: "Hydroflow", detalle: "Suministro e instalación equipo Hydroflow", valor: "EJECUTADO" },
@@ -797,7 +810,7 @@ export default function App() {
                   title="3. Reparaciones Locativas y Estructurales" 
                   total="Mejorado" 
                   icon={Wrench}
-                  photos={["/img/obras1.jpg", "/img/obras2.jpg"]}
+                  photos={[]}
                   data={[
                     { proveedor: "Andina de Materiales", detalle: "Compra de impermeabilizante para terraza y cubiertas", valor: "EJECUTADO" },
                     { proveedor: "Ariel Iván Pinto", detalle: "Reparación cielo raso salón comunal y pintura Apto 1102", valor: "EJECUTADO" },
@@ -809,7 +822,11 @@ export default function App() {
                   title="4. Planta Eléctrica y Energía" 
                   total="Vigente" 
                   icon={Zap}
-                  photos={["/img/planta1.jpg"]}
+                  photos={[
+                    "/img/PE1.jpeg", 
+                    "/img/PE2.jpeg", 
+                    "/img/PE3.jpeg"
+                  ]}
                   data={[
                     { proveedor: "Cummins de los Andes", detalle: "Mantenimiento preventivo Planta Eléctrica (Anual)", valor: "3 SESIONES" },
                     { proveedor: "Albeiro Bastidas", detalle: "Suministro e instalación batería Varta Black 4D", valor: "NUEVO" },
@@ -821,7 +838,7 @@ export default function App() {
                   title="5. Ascensores (Reparaciones Adicionales)" 
                   total="En Ajuste" 
                   icon={ArrowUpRight}
-                  photos={["/img/ascensor1.jpg", "/img/ascensor2.jpg"]}
+                  photos={["/img/AS.jpeg"]}
                   data={[
                     { proveedor: "Ascensur Elevadores", detalle: "Cambio de proveedor tras inconformidad con Greenergy", valor: "NUEVO CONTRATO" },
                     { proveedor: "Ascensur SAS", detalle: "Ajuste excéntricas, tensión de guayas y renivelación", valor: "50% AVANCE" },
@@ -833,7 +850,7 @@ export default function App() {
                   title="6. Seguridad Electrónica y Operativos" 
                   total="Monitoreado" 
                   icon={Camera}
-                  photos={["/img/cctv1.jpg"]}
+                  photos={[]}    
                   data={[
                     { proveedor: "Hernando Tarapuez", detalle: "Revisión de cámaras CCTV, adaptadores y video balum", valor: "EJECUTADO" },
                     { proveedor: "Paola Alejandra Coral", detalle: "Servicio de desratización y control de roedores", valor: "CERTIFICADO" },
