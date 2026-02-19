@@ -486,84 +486,81 @@ export default function App() {
           {activeSection === 'quorum' && (
             <div className="space-y-10 animate-in slide-in-from-right-10">
               <SectionHeader title="1. Registro y Quórum" icon={Users} agendaIndices={[0]} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
-              
-              <div className="space-y-6 print:hidden">
-                {/* FILA DE BÚSQUEDA Y ESTADÍSTICAS */}
+              <div className="flex justify-between items-end mb-4 print:hidden">
+                <div className="text-left">
+                  <h3 className="text-[#1A4B84] font-black text-lg uppercase tracking-tighter">Listado de Unidades</h3>
+                  <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Haga clic en el switch para registrar ingreso</p>
+                </div>
+
+                <button 
+                  onClick={() => {
+                    const todosPresentes = asistencia.every(a => a.presente);
+                    setAsistencia(prev => prev.map(a => ({ ...a, presente: !todosPresentes })));
+                  }}
+                  className={`flex items-center gap-3 px-8 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all shadow-md hover:scale-105 active:scale-95 border-b-4 ${
+                    asistencia.every(a => a.presente)
+                    ? 'bg-slate-100 text-[#E65100] border-slate-200' 
+                    : 'bg-[#1A4B84] text-white border-black/20'
+                  }`}
+                >
+                  {asistencia.every(a => a.presente) ? (
+                    <> <Trash2 size={16} /> Quitar Todo </>
+                  ) : (
+                    <> <UserCheck size={16} /> Marcar Total </>
+                  )}
+                </button>
+              </div>
+
+              <div className="space-y-8 print:hidden">
+                {/* FILA DE BÚSQUEDA Y ESTADÍSTICAS - Diseño más abierto */}
                 <div className="flex flex-col md:flex-row gap-8 items-center justify-between">
-                  <div className="relative group w-full max-w-xl">
-                    <Search className="absolute left-8 top-1/2 -translate-y-1/2 text-[#4B6A88] group-focus-within:text-[#1A4B84] transition-colors" size={22} />
+                  <div className="relative group w-full max-w-2xl">
+                    <Search className="absolute left-8 top-1/2 -translate-y-1/2 text-[#4B6A88] group-focus-within:text-[#1A4B84] transition-colors" size={24} />
                     <input 
                       type="text" 
                       placeholder="BUSCAR POR UNIDAD O NOMBRE DE PROPIETARIO..." 
-                      className="w-full pl-16 pr-10 py-6 bg-white border-2 border-[#1A4B84]/10 rounded-[28px] font-black text-[12px] uppercase tracking-widest focus:border-[#1A4B84] outline-none shadow-xl transition-all"
+                      className="w-full pl-20 pr-10 py-7 bg-white border-b-4 border-slate-200 focus:border-[#1A4B84] font-black text-[14px] uppercase tracking-widest outline-none transition-all"
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                     />
                   </div>
-                  <div className="flex items-center gap-4 bg-[#1A4B84]/5 px-8 py-5 rounded-[28px] border-2 border-[#1A4B84]/10">
+                  <div className="flex items-center gap-6 bg-white px-10 py-6 rounded-[32px] shadow-sm border border-slate-100">
                     <div className="text-right">
-                        <p className="text-[10px] font-black text-[#4B6A88] uppercase tracking-widest">PRESENTES</p>
-                        <p className="text-2xl font-black text-[#1A4B84]">{asistencia.filter(a => a.presente).length} / {asistencia.length}</p>
+                        <p className="text-[10px] font-black text-[#4B6A88] uppercase tracking-widest">PRESENTES EN SALA</p>
+                        <p className="text-3xl font-black text-[#1A4B84]">{asistencia.filter(a => a.presente).length} / {asistencia.length}</p>
                     </div>
-                    <Users className="text-[#1A4B84]" size={32} />
+                    <Users className="text-[#1A4B84]" size={40} />
                   </div>
                 </div>
 
-                {/* BOTÓN DE ACCIÓN MASIVA (TOGGLE ASISTENCIA) */}
-                <div className="flex justify-end print:hidden">
-                  <button 
-                    onClick={() => {
-                      const todosPresentes = asistencia.every(a => a.presente);
-                      setAsistencia(prev => prev.map(a => ({ ...a, presente: !todosPresentes })));
-                    }}
-                    className={`flex items-center gap-3 px-10 py-5 rounded-[24px] font-black text-[11px] uppercase tracking-[0.2em] transition-all shadow-xl hover:scale-105 active:scale-95 border-b-4 border-black/20 ${
-                      asistencia.every(a => a.presente)
-                      ? 'bg-[#E65100] text-white' 
-                      : 'bg-[#1A4B84] text-white'
-                    }`}
-                  >
-                    {asistencia.every(a => a.presente) ? (
-                      <>
-                        <Trash2 size={20} />
-                        Quitar Toda la Asistencia
-                      </>
-                    ) : (
-                      <>
-                        <UserCheck size={20} />
-                        Marcar Asistencia Total
-                      </>
-                    )}
-                  </button>
-                </div>
-              </div>
-
-              <Card className="overflow-hidden p-0 border-none shadow-2xl">
-                <div className="overflow-x-auto max-h-[700px]">
-                  <table className="w-full text-left text-sm">
-                    <thead className="bg-[#1A4B84] text-white font-black uppercase tracking-widest text-[10px] sticky top-0 z-10 shadow-lg">
+                {/* TABLA ESTILO ABIERTO (Sin el cuadrado encerrado) */}
+                <div className="w-full bg-white rounded-[40px] shadow-sm border border-slate-100 overflow-hidden">
+                  <table className="w-full text-left border-collapse">
+                    <thead className="bg-[#F8FAFC] text-[#4B6A88] font-black uppercase tracking-widest text-[11px] border-b-2 border-slate-100">
                       <tr>
-                        <th className="p-8">Unidad / Apto</th>
-                        <th className="p-8">Copropietario</th>
-                        <th className="p-8 text-center">Coeficiente (%)</th>
-                        <th className="p-8 text-center">Estado de Ingreso</th>
+                        <th className="px-12 py-8">UNIDAD</th>
+                        <th className="px-12 py-8">PROPIETARIO (EDITABLE)</th>
+                        <th className="px-12 py-8 text-center">COEF (%)</th>
+                        <th className="px-12 py-8 text-center">ASISTENCIA</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-[#1A4B84]/10 uppercase">
+                    <tbody className="divide-y divide-slate-50 uppercase">
                       {filteredAsistencia.map((item) => (
-                        <tr key={item.id} className={`${item.presente ? 'bg-[#E65100]/10' : ''} hover:bg-slate-50 transition-colors`}>
-                          <td className="p-8 font-black text-[#1A4B84] text-xl">{item.unidad}</td>
-                          <td className="p-8 font-black text-[#1E293B] text-[11px] leading-tight">{item.propietario}</td>
-                          <td className="p-8 font-black text-[#1E293B] text-center text-xl">{item.coeficiente.toFixed(2)}%</td>
-                          <td className="p-8 text-center">
+                        <tr key={item.id} className={`${item.presente ? 'bg-[#1A4B84]/5' : ''} hover:bg-slate-50 transition-colors`}>
+                          <td className="px-12 py-8 font-black text-[#1A4B84] text-xl">{item.unidad}</td>
+                          <td className="px-12 py-8 font-black text-[#1E293B] text-sm tracking-tight">{item.propietario}</td>
+                          <td className="px-12 py-8 font-black text-[#4B6A88] text-center text-xl">{item.coeficiente.toFixed(2)}%</td>
+                          <td className="px-12 py-8 text-center">
+                            {/* Switch de asistencia similar al ejemplo profesional */}
                             <button 
                               onClick={() => toggleAsistencia(item.id)} 
-                              className={`px-8 py-3 rounded-2xl text-[10px] font-black tracking-[0.2em] transition-all shadow-md ${
-                                item.presente 
-                                  ? 'bg-[#E65100] text-white border-2 border-[#E65100]' 
-                                  : 'bg-white border-2 border-[#1A4B84]/20 text-[#4B6A88] hover:border-[#1A4B84]'
+                              className={`relative inline-flex h-8 w-16 items-center rounded-full transition-colors focus:outline-none ${
+                                item.presente ? 'bg-[#E65100]' : 'bg-slate-200'
                               }`}
                             >
-                              {item.presente ? 'PRESENTE' : 'REGISTRAR'}
+                              <span className={`inline-block h-6 w-6 transform rounded-full bg-white transition-transform ${
+                                item.presente ? 'translate-x-9' : 'translate-x-1'
+                              }`} />
                             </button>
                           </td>
                         </tr>
@@ -571,7 +568,7 @@ export default function App() {
                     </tbody>
                   </table>
                 </div>
-              </Card>
+              </div>
             </div>
           )}
 
@@ -694,79 +691,81 @@ export default function App() {
             </div>
           )}
 
-          {/* SECCIÓN 6: INFORME GESTIÓN LOYOLA 32 */}
           {activeSection === 'gestion' && (
-            <div className="space-y-12 animate-in slide-in-from-bottom-10 uppercase">
+            <div className="space-y-16 animate-in slide-in-from-bottom-10 uppercase">
               <SectionHeader title="6. Informe Integral de Gestión 2025" icon={TrendingUp} agendaIndices={[5]} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
 
               {/* 1. PRESENTACIÓN EJECUTIVA (LOS 3 PILARES) */}
-              <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                 <div className="lg:col-span-3">
                   <Card title="1. Resumen de Ejecución Administrativa" icon={Activity} highlight>
-                    <p className="text-sm font-bold text-slate-600 leading-relaxed mb-6 uppercase tracking-tight">
-                      Durante el periodo 2025, la administración ejecutó acciones clave enfocadas en la <span className="text-[#1A4B84] font-black underline decoration-[#E65100]">optimización de servicios verticales</span>, la recuperación de la <span className="text-[#1A4B84] font-black underline decoration-[#E65100]">infraestructura hidráulica</span> y el fortalecimiento de la seguridad perimetral y vehicular.
+                    {/* Aumento a text-lg para lectura clara */}
+                    <p className="text-lg font-bold text-slate-700 leading-relaxed mb-8 uppercase tracking-tight">
+                      Durante el periodo 2025, la administración ejecutó acciones clave enfocadas en la <span className="text-[#1A4B84] font-black underline decoration-[#E65100] decoration-4">optimización de servicios verticales</span>, la recuperación de la <span className="text-[#1A4B84] font-black underline decoration-[#E65100] decoration-4">infraestructura hidráulica</span> y el fortalecimiento de la seguridad perimetral y vehicular.
                     </p>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <div className="p-4 bg-slate-50 rounded-2xl border-2 border-[#1A4B84]/10">
-                        <Wrench className="text-[#E65100] mb-3" size={24} />
-                        <p className="text-[10px] font-black text-[#1A4B84] uppercase tracking-widest leading-none mb-1">Pilar A</p>
-                        <p className="text-xs font-black text-slate-800">Mantenimiento Locativo</p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <div className="p-6 bg-slate-50 rounded-3xl border-2 border-[#1A4B84]/20 shadow-sm">
+                        <Wrench className="text-[#E65100] mb-4" size={32} />
+                        <p className="text-[12px] font-black text-[#1A4B84] uppercase tracking-[0.2em] mb-2">Pilar A</p>
+                        <p className="text-sm font-black text-slate-900">Mantenimiento Locativo</p>
                       </div>
-                      <div className="p-4 bg-slate-50 rounded-2xl border-2 border-[#1A4B84]/10">
-                        <ShieldCheck className="text-[#E65100] mb-3" size={24} />
-                        <p className="text-[10px] font-black text-[#1A4B84] uppercase tracking-widest leading-none mb-1">Pilar B</p>
-                        <p className="text-xs font-black text-slate-800">Seguridad y Convivencia</p>
+                      <div className="p-6 bg-slate-50 rounded-3xl border-2 border-[#1A4B84]/20 shadow-sm">
+                        <ShieldCheck className="text-[#E65100] mb-4" size={32} />
+                        <p className="text-[12px] font-black text-[#1A4B84] uppercase tracking-[0.2em] mb-2">Pilar B</p>
+                        <p className="text-sm font-black text-slate-900">Seguridad y Convivencia</p>
                       </div>
-                      <div className="p-4 bg-slate-50 rounded-2xl border-2 border-[#1A4B84]/10">
-                        <Scale className="text-[#E65100] mb-3" size={24} />
-                        <p className="text-[10px] font-black text-[#1A4B84] uppercase tracking-widest leading-none mb-1">Pilar C</p>
-                        <p className="text-xs font-black text-slate-800">Gestión Legal y Cartera</p>
+                      <div className="p-6 bg-slate-50 rounded-3xl border-2 border-[#1A4B84]/20 shadow-sm">
+                        <Scale className="text-[#E65100] mb-4" size={32} />
+                        <p className="text-[12px] font-black text-[#1A4B84] uppercase tracking-[0.2em] mb-2">Pilar C</p>
+                        <p className="text-sm font-black text-slate-900">Gestión Legal y Cartera</p>
                       </div>
                     </div>
                   </Card>
                 </div>
-                <div className="bg-[#1A4B84] rounded-3xl p-8 text-white flex flex-col justify-center shadow-xl border-r-8 border-[#E65100]">
-                  <Building2 size={40} className="text-[#E65100] mb-4" />
-                  <h4 className="text-sm font-black uppercase mb-2 tracking-widest">Administración</h4>
-                  <div className="space-y-3">
+                
+                {/* Cuadro lateral de Administración */}
+                <div className="bg-[#1A4B84] rounded-[40px] p-10 text-white flex flex-col justify-center shadow-2xl border-r-[12px] border-[#E65100]">
+                  <Building2 size={48} className="text-[#E65100] mb-6" />
+                  <h4 className="text-xs font-black uppercase mb-4 tracking-[0.3em] text-white/70">Administración</h4>
+                  <div className="space-y-6">
                     <div>
-                      <p className="text-[9px] font-black text-white/60 uppercase">Representante Legal</p>
-                      <p className="text-xs font-black">Ana Lucía Yépez</p>
+                      <p className="text-[10px] font-black text-[#E65100] uppercase mb-1">Representante Legal</p>
+                      <p className="text-xl font-black tracking-tight leading-tight">Ana Lucía Yépez</p>
                     </div>
                     <div>
-                      <p className="text-[9px] font-black text-white/60 uppercase">Contabilidad</p>
-                      <p className="text-xs font-black">Andrea E. Delgado</p>
+                      <p className="text-[10px] font-black text-[#E65100] uppercase mb-1">Contabilidad</p>
+                      <p className="text-xl font-black tracking-tight leading-tight">Andrea E. Delgado</p>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* 2. GASTOS MENSUALES FIJOS (TABLA) */}
-              <div className="bg-white rounded-[32px] border-2 border-[#1A4B84]/10 overflow-hidden shadow-md flex flex-col">
-                <div className="bg-[#1A4B84] px-8 py-5 flex items-center gap-4">
-                  <BarChart3 className="text-[#E65100]" size={22} />
-                  <h4 className="text-[12px] font-black text-white uppercase tracking-[0.2em]">Operación Mensual Recurrente 2025</h4>
+              <div className="bg-white rounded-[40px] border-4 border-[#1A4B84]/10 overflow-hidden shadow-2xl flex flex-col">
+                <div className="bg-[#1A4B84] px-10 py-7 flex items-center gap-6">
+                  <BarChart3 className="text-[#E65100]" size={28} />
+                  <h4 className="text-lg font-black text-white uppercase tracking-[0.2em]">Operación Mensual Recurrente 2025</h4>
                 </div>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-left text-[11px]">
-                    <thead className="bg-[#F8FAFC] text-[#4B6A88] font-black uppercase tracking-widest border-b-2">
+                  <table className="w-full text-left">
+                    <thead className="bg-[#F8FAFC] text-[#4B6A88] font-black uppercase tracking-widest border-b-4 border-slate-100">
                       <tr>
-                        <th className="px-8 py-4">Entidad / Proveedor</th>
-                        <th className="px-8 py-4">Concepto del Servicio</th>
+                        <th className="px-10 py-6 text-sm">Entidad / Proveedor</th>
+                        <th className="px-10 py-6 text-sm">Concepto del Servicio</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-[#1A4B84]/5 uppercase font-bold text-[#1E293B]">
+                    <tbody className="divide-y-2 divide-slate-100 uppercase font-bold text-slate-700">
                       {[
                         { p: "Seguridad del Sur Ltda", c: "Vigilancia 24/7 y Monitoreo" },
                         { p: "Escoba Mágica SAS", c: "Personal de Aseo y Zonas Comunes" },
                         { p: "Ana Lucía Yépez", c: "Honorarios Administración" },
-                        { p: "Andrea Elizabeth Delgado", c: "Contabilidad y Revisoría" },
+                        { p: "Andrea Elizabeth Delgado", c: "Contabilidad" },
                         { p: "Ascensur Elevadores", c: "Mantenimiento Técnico Vertical" },
                         { p: "Cedenar / Empopasto / Emas", c: "Servicios Públicos (Promedios)" }
                       ].map((row, i) => (
                         <tr key={i} className="hover:bg-[#1A4B84]/5 transition-colors">
-                          <td className="px-8 py-4 text-[#1A4B84] font-black">{row.p}</td>
-                          <td className="px-8 py-4">{row.c}</td>
+                          <td className="px-10 py-6 text-[#1A4B84] font-black text-[14px]">{row.p}</td>
+                          <td className="px-10 py-6 text-[14px]">{row.c}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -774,176 +773,113 @@ export default function App() {
                 </div>
               </div>
 
-              {/* 3. DETALLE DE INVERSIONES POR SISTEMA (1 AL 6) */}
-              <div className="grid grid-cols-1 gap-10">
-                <InvestmentTable 
-                  title="1. Sistema de Accesos Vehiculares" 
-                  total="Operativo" 
-                  icon={Zap}
-                  photos={["/img/VE.jpeg"]}
+              {/* 3. DETALLE DE INVERSIONES POR SISTEMA */}
+              <div className="grid grid-cols-1 gap-12">
+                <InvestmentTable title="1. Sistema de Accesos Vehiculares" total="Operativo" icon={Zap} photos={["/img/VE.jpeg"]}
                   data={[
                     { proveedor: "Manuel Quelal", detalle: "Suministro e instalación Brazo Accessmatic (Sustitución maquinaria)", valor: "EJECUTADO" },
                     { proveedor: "Manuel Quelal", detalle: "Programación control de acceso y sensores parqueadero inferior", valor: "EJECUTADO" },
                     { proveedor: "Manuel Quelal", detalle: "Mantenimiento puerta vehicular y fotoceldas", valor: "AL DÍA" }
-                  ]}
-                />
+                  ]} />
 
-                <InvestmentTable 
-                  title="2. Sistema Hidráulico y Redes" 
-                  total="Reparado" 
-                  icon={Droplets}
-                  photos={[
-                    "/img/HI1.jpeg", 
-                    "/img/HI2.jpeg", 
-                    "/img/HI3.jpeg"
-                  ]}
+                <InvestmentTable title="2. Sistema Hidráulico y Redes" total="Reparado" icon={Droplets} photos={["/img/HI1.jpeg", "/img/HI2.jpeg", "/img/HI3.jpeg"]}
                   data={[
                     { proveedor: "Jhon Franco Cuatin", detalle: "Reparación equipos presión constante y bombas", valor: "EJECUTADO" },
                     { proveedor: "Hydroflow", detalle: "Suministro e instalación equipo Hydroflow", valor: "EJECUTADO" },
                     { proveedor: "Jhon Franco Cuatin", detalle: "Búsqueda y reparación de fuga de malos olores (Apto 1003)", valor: "SOLUCIONADO" }
-                  ]}
-                />
+                  ]} />
 
-                <InvestmentTable 
-                  title="3. Reparaciones Locativas y Estructurales" 
-                  total="Mejorado" 
-                  icon={Wrench}
-                  photos={[]}
+                <InvestmentTable title="3. Reparaciones Locativas y Estructurales" total="Mejorado" icon={Wrench} photos={["/img/rep1.jpeg", "/img/rep2.jpeg", "/img/rep3.jpeg", "/img/rep4.jpeg"]}
                   data={[
                     { proveedor: "Andina de Materiales", detalle: "Compra de impermeabilizante para terraza y cubiertas", valor: "EJECUTADO" },
                     { proveedor: "Ariel Iván Pinto", detalle: "Reparación cielo raso salón comunal y pintura Apto 1102", valor: "EJECUTADO" },
                     { proveedor: "Jose Jojoa", detalle: "Compra de manila para mantenimiento general", valor: "SUMINISTRADO" }
-                  ]}
-                />
+                  ]} />
 
-                <InvestmentTable 
-                  title="4. Planta Eléctrica y Energía" 
-                  total="Vigente" 
-                  icon={Zap}
-                  photos={[
-                    "/img/PE1.jpeg", 
-                    "/img/PE2.jpeg", 
-                    "/img/PE3.jpeg"
-                  ]}
+                <InvestmentTable title="4. Planta Eléctrica y Energía" total="Vigente" icon={Zap} photos={["/img/PE1.jpeg", "/img/PE2.jpeg", "/img/PE3.jpeg"]}
                   data={[
                     { proveedor: "Cummins de los Andes", detalle: "Mantenimiento preventivo Planta Eléctrica (Anual)", valor: "3 SESIONES" },
                     { proveedor: "Albeiro Bastidas", detalle: "Suministro e instalación batería Varta Black 4D", valor: "NUEVO" },
                     { proveedor: "Luis Libardo Yanguatin", detalle: "Configuración y revisión de transferencia de emergencia", valor: "AL DÍA" }
-                  ]}
-                />
+                  ]} />
 
-                <InvestmentTable 
-                  title="5. Ascensores (Reparaciones Adicionales)" 
-                  total="En Ajuste" 
-                  icon={ArrowUpRight}
-                  photos={["/img/AS.jpeg"]}
+                <InvestmentTable title="5. Ascensores (Reparaciones Adicionales)" total="En Ajuste" icon={ArrowUpRight} photos={["/img/AS.jpeg"]}
                   data={[
                     { proveedor: "Ascensur Elevadores", detalle: "Cambio de proveedor tras inconformidad con Greenergy", valor: "NUEVO CONTRATO" },
                     { proveedor: "Ascensur SAS", detalle: "Ajuste excéntricas, tensión de guayas y renivelación", valor: "50% AVANCE" },
                     { proveedor: "Greenergy", detalle: "Compra de zapatas de cabina e inductor tipo tabaco", valor: "INSTALADO" }
-                  ]}
-                />
+                  ]} />
 
-                <InvestmentTable 
-                  title="6. Seguridad Electrónica y Operativos" 
-                  total="Monitoreado" 
-                  icon={Camera}
-                  photos={[]}    
+                <InvestmentTable title="6. Seguridad Electrónica y Operativos" total="Monitoreado" icon={Camera} photos={[]}    
                   data={[
                     { proveedor: "Hernando Tarapuez", detalle: "Revisión de cámaras CCTV, adaptadores y video balum", valor: "EJECUTADO" },
                     { proveedor: "Paola Alejandra Coral", detalle: "Servicio de desratización y control de roedores", valor: "CERTIFICADO" },
                     { proveedor: "Jose Francisco Jojoa", detalle: "Instalación y revisión de series navideñas", valor: "TEMPORADA" }
-                  ]}
-                />
+                  ]} />
               </div>
 
               {/* 4. GESTIÓN DE RIESGOS (PÓLIZAS) */}
-              <div className="space-y-8">
-                <div className="bg-[#E65100] p-8 rounded-[40px] text-white flex flex-col md:flex-row justify-between items-center gap-8 shadow-2xl relative overflow-hidden">
+              <div className="space-y-12">
+                <div className="bg-[#E65100] p-12 rounded-[50px] text-white flex flex-col md:flex-row justify-between items-center gap-8 shadow-2xl relative overflow-hidden">
                   <div className="z-10 text-center md:text-left">
-                    <h3 className="text-3xl font-black uppercase tracking-tighter mb-2">Protección Patrimonial</h3>
-                    <p className="text-white/80 font-bold text-xs uppercase tracking-widest">Relación de Pólizas Vigentes - Seguros del Estado.</p>
+                    <h3 className="text-4xl font-black uppercase tracking-tighter mb-2">Protección Patrimonial</h3>
+                    <p className="text-white/80 font-bold text-sm uppercase tracking-[0.2em]">Relación de Pólizas Vigentes - Seguros del Estado.</p>
                   </div>
-                  <ShieldCheck size={56} className="text-white opacity-20 absolute right-10" />
+                  <ShieldCheck size={80} className="text-white opacity-20 absolute right-12" />
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
                   <div className="lg:col-span-2">
                     <Card title="Póliza Todo Riesgo Daños Materiales" icon={ShieldCheck} badge="Vigente 2026">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                        <div className="p-4 bg-slate-50 rounded-2xl border-2 border-[#1A4B84]/10">
-                          <p className="text-[10px] font-black text-[#4B6A88] uppercase mb-1">Fin Vigencia</p>
-                          <p className="text-xs font-black text-[#1A4B84]">24 DE AGOSTO DE 2026</p>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                        <div className="p-6 bg-slate-50 rounded-3xl border-2 border-[#1A4B84]/10 shadow-inner">
+                          <p className="text-[11px] font-black text-[#4B6A88] uppercase mb-1 tracking-widest">Fin Vigencia</p>
+                          <p className="text-sm font-black text-[#1A4B84]">24 DE AGOSTO DE 2026</p>
                         </div>
-                        <div className="p-4 bg-slate-50 rounded-2xl border-2 border-[#1A4B84]/10">
-                          <p className="text-[10px] font-black text-[#4B6A88] uppercase mb-1">Prima Total</p>
-                          <p className="text-xs font-black text-[#E65100]">$6.663.423 (IVA INCL.)</p>
+                        <div className="p-6 bg-slate-50 rounded-3xl border-2 border-[#1A4B84]/10 shadow-inner">
+                          <p className="text-[11px] font-black text-[#4B6A88] uppercase mb-1 tracking-widest">Prima Total</p>
+                          <p className="text-sm font-black text-[#E65100]">$6.663.423 (IVA INCL.)</p>
                         </div>
                       </div>
-                      <div className="overflow-x-auto rounded-xl border-2 border-slate-50">
-                        <table className="w-full text-left text-[11px] uppercase">
-                          <thead className="bg-slate-50 text-[#4B6A88] font-black tracking-tight border-b">
-                            <tr><th className="px-4 py-2">Amparo</th><th className="px-4 py-2">Valor Asegurado</th></tr>
+                      <div className="overflow-x-auto rounded-[32px] border-4 border-slate-50">
+                        <table className="w-full text-left uppercase">
+                          <thead className="bg-slate-50 text-[#4B6A88] font-black tracking-widest border-b">
+                            <tr><th className="px-6 py-4 text-[12px]">Amparo</th><th className="px-6 py-4 text-[12px]">Valor Asegurado</th></tr>
                           </thead>
-                          <tbody className="divide-y divide-slate-50 font-bold text-[#1E293B]">
-                            <tr><td className="px-4 py-2">Bienes Comunes</td><td className="px-4 py-2 font-black">$5.000.000.000</td></tr>
-                            <tr><td className="px-4 py-2">Bienes Privados</td><td className="px-4 py-2 font-black">$1.300.000.000</td></tr>
-                            <tr><td className="px-4 py-2">Maquinaria y Equipo</td><td className="px-4 py-2 font-black">$620.000.000</td></tr>
-                            <tr><td className="px-4 py-2">Resp. Civil Extracontractual</td><td className="px-4 py-2 font-black">$300.000.000</td></tr>
+                          <tbody className="divide-y divide-slate-50 font-bold text-slate-700">
+                            <tr><td className="px-6 py-4 text-[13px]">Bienes Comunes</td><td className="px-6 py-4 font-black text-[13px] text-[#1A4B84]">$5.000.000.000</td></tr>
+                            <tr><td className="px-6 py-4 text-[13px]">Bienes Privados</td><td className="px-6 py-4 font-black text-[13px] text-[#1A4B84]">$1.300.000.000</td></tr>
+                            <tr><td className="px-6 py-4 text-[13px]">Maquinaria y Equipo</td><td className="px-6 py-4 font-black text-[13px] text-[#1A4B84]">$620.000.000</td></tr>
+                            <tr><td className="px-6 py-4 text-[13px]">Resp. Civil Extracontractual</td><td className="px-6 py-4 font-black text-[13px] text-[#1A4B84]">$300.000.000</td></tr>
                           </tbody>
                         </table>
                       </div>
                     </Card>
                   </div>
-                  <div className="space-y-6">
+
+                  <div className="space-y-8">
                     <Card title="Póliza D&O (Directivos)" icon={Scale} highlight>
-                      <div className="space-y-6 relative z-10">
+                      <div className="space-y-8 relative z-10">
                         <div>
-                          <p className="text-[10px] text-[#E65100] font-black uppercase tracking-[0.2em] mb-1">Errores y Omisiones</p>
-                          <p className="text-5xl font-black text-[#1A4B84] leading-none tracking-tighter">$100.000.000</p>
+                          <p className="text-[11px] text-[#E65100] font-black uppercase tracking-[0.3em] mb-2">Errores y Omisiones</p>
+                          <p className="text-6xl font-black text-[#1A4B84] leading-none tracking-tighter">$100.000.000</p>
                         </div>
-                        <p className="text-[12px] text-slate-600 leading-relaxed font-medium italic border-l-2 border-[#E65100] pl-4">
+                        <p className="text-sm text-slate-600 leading-relaxed font-bold italic border-l-4 border-[#E65100] pl-6">
                           Protección patrimonial para directores y administrador ante reclamaciones por errores u omisiones en su gestión.
                         </p>
-                        <div className="pt-6 border-t border-slate-100 flex justify-between items-end">
+                        <div className="pt-8 border-t-2 border-slate-100 flex justify-between items-end">
                           <div>
-                            <span className="text-[9px] font-black uppercase text-[#E65100] block mb-1 tracking-widest">Inversión Anual:</span>
-                            <span className="text-xl font-black text-[#1A4B84] tracking-tight">$166.600</span>
+                            <span className="text-[10px] font-black uppercase text-[#E65100] block mb-1 tracking-widest">Inversión Anual:</span>
+                            <span className="text-2xl font-black text-[#1A4B84] tracking-tight">$166.600</span>
                           </div>
                           <div className="text-right">
-                            <span className="bg-emerald-500 text-white px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest">ACTIVA</span>
+                            <span className="bg-emerald-600 text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">ACTIVA</span>
                           </div>
                         </div>
                       </div>
                     </Card>
                   </div>
                 </div>
-              </div>
-
-              {/* 5. ACTIVIDADES PENDIENTES */}
-              <div className="space-y-8">
-                <SectionHeader title="5. Proyectos & Pendientes 2026" icon={Settings} agendaIndices={[5]} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
-                <Card highlight>
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-left text-xs uppercase font-black">
-                      <thead className="bg-[#1A4B84] text-white font-black border-b-4 border-[#E65100]">
-                        <tr><th className="px-6 py-4">Actividad / Gestión</th><th className="px-6 py-4">Estado</th><th className="px-6 py-4">Observación</th></tr>
-                      </thead>
-                      <tbody className="divide-y divide-slate-100 text-[#1E293B]">
-                        <tr>
-                          <td className="px-6 py-4">Fachada e Impermeabilización</td>
-                          <td className="px-6 py-4"><span className="bg-red-100 text-red-700 px-3 py-1 rounded-full text-[9px]">EN COTIZACIÓN</span></td>
-                          <td className="px-6 py-4 text-[10px] text-[#4B6A88]">Se requiere definir intervención prioritaria.</td>
-                        </tr>
-                        <tr>
-                          <td className="px-6 py-4">Modificación Ducto Planta Eléctrica</td>
-                          <td className="px-6 py-4"><span className="bg-[#E65100]/10 text-[#E65100] px-3 py-1 rounded-full text-[9px]">GESTIÓN LEGAL</span></td>
-                          <td className="px-6 py-4 text-[10px] text-[#4B6A88]">Trámite ante Corponariño por chimenea.</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </Card>
               </div>
             </div>
           )}
