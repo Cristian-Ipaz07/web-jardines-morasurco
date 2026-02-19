@@ -995,26 +995,46 @@ export default function App() {
               </div>
             </div>
           )}
-          {/* SECCIÓN 7: FINANCIERO */}
+          
           {/* SECCIÓN 7: FINANCIERO */}
           {activeSection === 'financiero' && (
             <div className="space-y-10 animate-in fade-in">
-              <SectionHeader title="7. Estados Financieros" icon={BarChart3} agendaIndices={[6]} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 uppercase">
-                 <Card title="Estado de Resultados 2025" icon={Activity} highlight>
-                    <div className="flex flex-col items-center justify-center py-16 text-center">
-                       <BarChart3 size={64} className="text-[#1A4B84] mb-8" />
-                       <p className="text-lg font-black text-[#1E293B] mb-4 tracking-tighter">Dictamen Contable Sin Salvedades</p>
-                       <p className="text-[11px] font-black text-[#4B6A88] tracking-[0.2em]">Exposición detallada de ingresos vs egresos ejecutados.</p>
+              <SectionHeader title="7. Informe Financiero Año 2025" icon={BarChart3} agendaIndices={[6]} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
+              
+              <div className="max-w-5xl mx-auto uppercase">
+                <div className="bg-white rounded-[60px] p-16 shadow-2xl border-4 border-[#1A4B84]/10 flex flex-col items-center text-center relative overflow-hidden">
+                  {/* Decoración de fondo */}
+                  <div className="absolute top-0 right-0 p-12 opacity-5">
+                    <BarChart3 size={200} className="text-[#1A4B84]" />
+                  </div>
+
+                  <div className="p-8 bg-[#1A4B84]/5 rounded-[40px] mb-10 border-2 border-[#1A4B84]/10">
+                    <TrendingUp size={80} className="text-[#1A4B84]" />
+                  </div>
+
+                  <h3 className="text-4xl font-black text-[#1A4B84] mb-6 tracking-tighter leading-none">
+                    PRESENTACIÓN ESTADOS FINANCIEROS 2025
+                  </h3>
+                  
+                  <div className="w-24 h-2 bg-[#E65100] mb-10 rounded-full"></div>
+
+                  <div className="space-y-4">
+                    <p className="text-[14px] font-black text-[#4B6A88] uppercase tracking-[0.4em]">A cargo de:</p>
+                    <p className="text-5xl font-black text-[#1E293B] tracking-tight">ANDREA ELIZABETH DELGADO</p>
+                    <p className="text-lg font-bold text-[#E65100] tracking-widest mt-2 uppercase">Contadora Pública</p>
+                  </div>
+
+                  <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-2xl">
+                    <div className="bg-slate-50 p-6 rounded-3xl border-2 border-slate-100">
+                      <p className="text-[10px] font-black text-[#1A4B84] tracking-[0.2em] mb-2 uppercase">Periodo Auditado</p>
+                      <p className="text-xl font-black text-slate-700">ENE - DIC 2025</p>
                     </div>
-                 </Card>
-                 <Card title="Análisis de Cartera" icon={DollarSign}>
-                    <div className="p-10 bg-[#1A4B84]/5 rounded-[40px] border-2 border-[#1A4B84]/10 text-center flex flex-col items-center justify-center h-full">
-                       <p className="text-4xl font-black text-[#1A4B84] mb-4 leading-none"> EFECTIVO</p>
-                       <p className="text-[10px] font-black text-[#4B6A88] uppercase tracking-[0.3em] leading-loose">Optimización de cartera morosa mediante gestión persuasiva.</p>
-                       <div className="mt-8 bg-[#1A4B84] text-white px-8 py-3 rounded-full font-black text-xs shadow-lg">CARTERA SANA</div>
+                    <div className="bg-slate-50 p-6 rounded-3xl border-2 border-slate-100">
+                      <p className="text-[10px] font-black text-[#1A4B84] tracking-[0.2em] mb-2 uppercase">Certificación</p>
+                      <p className="text-xl font-black text-slate-700">SIN SALVEDADES</p>
                     </div>
-                 </Card>
+                  </div>
+                </div>
               </div>
             </div>
           )}
@@ -1022,32 +1042,37 @@ export default function App() {
           {/* SECCIÓN 8: PRESUPUESTO */}
           {activeSection === 'presupuesto' && (
             <div className="space-y-10 animate-in slide-in-from-bottom-10">
-              <SectionHeader title="8. Proyecto Presupuesto 2026" icon={PieChart} agendaIndices={[7]} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 uppercase">
-                 <div className="lg:col-span-2">
-                    <Card title="Propuesta Incremento 2026" icon={Landmark} highlight>
-                       <p className="text-[12px] font-black text-[#4B6A88] leading-loose uppercase mb-10">
-                          Ajuste necesario para cubrir el incremento del SMMLV en servicios de vigilancia y aseo, garantizando el fondo de imprevistos y mantenimiento de ascensores.
-                       </p>
-                       <div className="grid grid-cols-2 gap-8">
-                          <div className="p-8 bg-slate-50 rounded-[32px] border-2 border-[#1A4B84]/10 text-center shadow-inner">
-                             <p className="text-[10px] font-black text-[#4B6A88] mb-2 uppercase tracking-widest">PROYECCIÓN IPC</p>
-                             <p className="text-2xl font-black text-[#1A4B84]">+ IPC 2025</p>
-                          </div>
-                          <div className="p-8 bg-slate-50 rounded-[32px] border-2 border-[#1A4B84]/10 text-center shadow-inner">
-                             <p className="text-[10px] font-black text-[#4B6A88] mb-2 uppercase tracking-widest">CUOTA ESTIMADA</p>
-                             <p className="text-2xl font-black text-[#E65100]">A DEBATE</p>
-                          </div>
-                       </div>
-                    </Card>
-                 </div>
-                 <div className="bg-[#E65100] rounded-[56px] p-12 text-white flex flex-col justify-center items-center text-center shadow-2xl border-b-[16px] border-black/10">
-                    <Wallet size={64} className="mb-10 shadow-lg" />
-                    <h4 className="font-black text-2xl mb-6 uppercase tracking-tighter">Sostenibilidad</h4>
-                    <p className="text-[11px] font-black opacity-70 uppercase tracking-[0.2em] leading-loose">
-                       Un edificio bien presupuestado es un edificio valorizado y seguro para sus residentes.
+              <SectionHeader title="8. Proyecto Presupuesto Año 2026" icon={PieChart} agendaIndices={[7]} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
+              
+              <div className="max-w-5xl mx-auto uppercase">
+                <div className="bg-[#1A4B84] rounded-[60px] p-16 shadow-2xl border-b-[20px] border-black/10 flex flex-col items-center text-center relative overflow-hidden">
+                  {/* Decoración de fondo */}
+                  <div className="absolute bottom-0 left-0 p-12 opacity-10">
+                    <Wallet size={250} className="text-white" />
+                  </div>
+
+                  <div className="p-8 bg-white/10 rounded-[40px] mb-10 border-2 border-white/20 backdrop-blur-md">
+                    <Landmark size={80} className="text-[#E65100]" />
+                  </div>
+
+                  <h3 className="text-4xl font-black text-white mb-6 tracking-tighter leading-none">
+                    PROYECTO DE PRESUPUESTO VIGENCIA 2026
+                  </h3>
+                  
+                  <div className="w-24 h-2 bg-[#E65100] mb-10 rounded-full"></div>
+
+                  <div className="space-y-4">
+                    <p className="text-[14px] font-black text-white/60 uppercase tracking-[0.4em]">Presentado por:</p>
+                    <p className="text-5xl font-black text-white tracking-tight">ANDREA ELIZABETH DELGADO</p>
+                    <p className="text-lg font-bold text-[#E65100] tracking-widest mt-2 uppercase">Contadora Profesional</p>
+                  </div>
+
+                  <div className="mt-16 bg-white/5 border-2 border-white/10 backdrop-blur-sm px-12 py-8 rounded-[40px]">
+                    <p className="text-[12px] font-black text-white/80 uppercase leading-relaxed max-w-md">
+                      ESTUDIO TÉCNICO DE INGRESOS Y GASTOS PROYECTADOS PARA GARANTIZAR LA OPERATIVIDAD Y VALORIZACIÓN DE LOYOLA 32.
                     </p>
-                 </div>
+                  </div>
+                </div>
               </div>
             </div>
           )}
