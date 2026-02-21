@@ -720,7 +720,7 @@ export default function App() {
                   {[
                     { 
                       icon: Percent, 
-                      txt: "APERTURA CUENTA AHORROS PARA FONDO IMPREVISTOS Y CDT VIGENTE (INTERESES ACUMULADOS A OCT: $1.253.083).", 
+                      txt: "APERTURA CUENTA AHORROS PARA FONDO IMPREVISTOS Y CDT VIGENTE (INTERESES ACUMULADOS A DICIEMBRE: $1.253.083).", 
                       color: "#4E8A2F" 
                     },
                     { 
@@ -730,12 +730,12 @@ export default function App() {
                     },
                     { 
                       icon: ShieldAlert, 
-                      txt: "COBRO PREJURÍDICO Y JURÍDICO EFECTIVO. REDUCCIÓN CARTERA MOROSA (CASO ESPECIAL APTO 301).", 
+                      txt: "COBRO PREJURÍDICO Y JURÍDICO EFECTIVO. REDUCCIÓN CARTERA MOROSA.", 
                       color: "#4E8A2F" 
                     },
                     { 
                       icon: Scale, 
-                      txt: "ASUNCIÓN PAGO PREDIAL BODEGAS (1, 3, 4, 8, 9, 10) PARA PROCESO DE PERTENENCIA LEGAL.", 
+                      txt: "se asumió por parte de la copropiedad los prediales de las bodegas", 
                       color: "#4E8A2F" 
                     }
                   ].map((item, idx) => (
@@ -788,13 +788,13 @@ export default function App() {
                     icon={Wrench}
                     total="OPTIMIZADO"
                     /* Aquí vinculas las fotos directamente al componente */
-                    photos={["/img/obra1.jpg", "/img/obra2.jpg"]} 
+                    photos={[]} 
                     data={[
                       {p: "CASTEIR MORENO", o: "MANTENIMIENTO CUBIERTA", d: "REPARACIÓN TECHOS Y SUMINISTRO DE MATERIALES."},
                       {p: "JHON FRANCO CUATIN", o: "SISTEMA HIDRÁULICO", d: "LAVADO DE TANQUES Y MANTENIMIENTO EQUIPOS PRESIÓN."},
                       {p: "JOSE FRANCISCO JOJOA", o: "ILUMINACIÓN LED", d: "INSTALACIÓN DE LÁMPARAS EN PARQUEADERO Y PISOS."},
                       {p: "LUIS HUMBERTO BARRERA", o: "SUMINISTROS ELÉCTRICOS", d: "COMPRA DE PANELES LED DE ALTA EFICIENCIA."},
-                      {p: "ANA LUCÍA YÉPEZ (C.M.)", o: "ZONAS VERDES", d: "ARREGLO DE JARDINERA PRINCIPAL (FONDO CAJA MENOR)."}
+                      {p: "CAJA MENOR", o: "ZONAS VERDES", d: "ARREGLO DE JARDINERA PRINCIPAL (FONDO CAJA MENOR)."}
                     ].map(item => ({
                       ...item,
                       p: <span className="text-xl font-black text-[#4E8A2F]">{item.p}</span>,
@@ -808,7 +808,7 @@ export default function App() {
                     headers={["PROVEEDOR", "CONCEPTO TÉCNICO", "DETALLE DEL SERVICIO"]}
                     icon={ShieldCheck}
                     total="MONITOREADO"
-                    photos={["/img/seguridad1.jpg"]} // Añade tus rutas de fotos aquí
+                    photos={[]} // Añade tus rutas de fotos aquí
                     data={[
                       {p: "TALAMO LTDA", c: "ACTUALIZACIÓN DVR", d: "SUMINISTRO DISCO DURO 2TB PARA SISTEMA CCTV."},
                       {p: "CUMMINS DE LOS ANDES", c: "PLANTA ELÉCTRICA", d: "MANTENIMIENTO PREVENTIVO CUATRIMESTRAL."},
@@ -828,13 +828,13 @@ export default function App() {
                     headers={["PROVEEDOR", "CONCEPTO", "DETALLE DE COMPRA"]}
                     icon={HeartPulse}
                     total="EJECUTADO"
-                    photos={["/img/bienestar1.jpg"]} // Añade tus rutas de fotos aquí
+                    photos={[]} // Añade tus rutas de fotos aquí
                     data={[
                       {p: "ADRIANA BARRERA", c: "INSUMOS ASEO", d: "PRODUCTOS DE LIMPIEZA PARA ÁREAS COMUNES."},
-                      {p: "YASMIN CUALTAN", c: "CARPINTERÍA/EVENTOS", d: "MUEBLE PARA SALÓN Y GESTIÓN EVENTO NAVIDEÑO."},
-                      {p: "ALBA LUCY LOPEZ", c: "JARDINERÍA", d: "COMPRA DE PLANTAS ORNAMENTALES Y TIERRA."},
+                      {p: "consejo de admin", c: "CARPINTERÍA/EVENTOS", d: "MUEBLE PARA SALÓN Y GESTIÓN EVENTO NAVIDEÑO."},
+                      {p: "consejo de admin", c: "JARDINERÍA", d: "COMPRA DE PLANTAS ORNAMENTALES Y TIERRA."},
                       {p: "PAOLA ALEJANDRA CORAL", c: "CONTROL PLAGAS", d: "FUMIGACIÓN Y CONTROL DE ROEDORES."},
-                      {p: "ANA LUCÍA YÉPEZ", c: "BIENESTAR", d: "BONO DE FIN DE AÑO PARA PERSONAL OPERATIVO."}
+                      {p: "consejo de admin", c: "BIENESTAR", d: "BONO DE FIN DE AÑO PARA PERSONAL OPERATIVO."}
                     ].map(item => ({
                       ...item,
                       p: <span className="text-xl font-black text-[#4E8A2F]">{item.p}</span>,
@@ -854,7 +854,7 @@ export default function App() {
                       {p: "ALCALDÍA DE PASTO", c: "PREDIALES", d: "PAGO PREDIALES BODEGAS 3, 4, 8, 9 Y 10."},
                       {p: "STEFANIA MUÑOZ", c: "CARTERA", d: "HONORARIOS RECUPERACIÓN DE MOROSOS HISTÓRICOS."},
                       {p: "COMERCIALIZADORA HH", c: "PAPELERÍA", d: "SUMINISTROS DE SEPARADORES PARA ARCHIVO."},
-                      {p: "ANA LUCIA YEPEZ C.", c: "INSUMOS OPERATIVOS", d: "GASOLINA PARA PLANTA ELÉCTRICA Y PAPELERÍA."}
+                      {p: "ALCALDIA.", c: "INSUMOS OPERATIVOS", d: "ACPM PARA PLANTA ELÉCTRICA Y PAPELERÍA."}
                     ].map(item => ({
                       ...item,
                       p: <span className="text-xl font-black text-[#4E8A2F]">{item.p}</span>,
